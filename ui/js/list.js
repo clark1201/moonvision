@@ -34,7 +34,7 @@ function bindListPage(page,objClassName) {
     var pageCount = 1;
     pageCount = Math.ceil(allCount / page);
     maxPage = pageCount;
-    $(".step2_page_index").html("").css("width",22 * pageCount + "px");
+    $(".step2_page_index").html("").css("width",25 * pageCount + "px");
     for (var i = 0; i < pageCount; i++) {
         var a = $("<a>");
         a.text(Number(i) + 1);
@@ -72,7 +72,7 @@ function bindListPage(page,objClassName) {
     if(maxPage==1){
         $("#NextPage").hide();
     }
-    $(".step2_page_index a")[pageNum - 1].style.fontSize = "13px";
+    $(".step2_page_index a")[pageNum - 1].style.fontSize = "18px";
     $(".step2_page_index a")[pageNum - 1].style.fontWeight = "bold";
     
     //跳转
