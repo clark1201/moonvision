@@ -49,7 +49,7 @@ function bindListPage(page,objClassName) {
         pageParm += pageParm == "" ? "?" : "&";
         pageParm += "page=" + (i + 1);
         a.attr("href",pageParm);
-        a.bind("click",{"page":i,"objClassName":objClassName,"isGoTop":"true"}, displayList);
+        a.on("click",{"page":i,"objClassName":objClassName,"isGoTop":"true"}, displayList);
     }
     var pageNum = 1;
     $("#PreviousPage").show();
@@ -92,9 +92,9 @@ function bindListPage(page,objClassName) {
     $("#PreviousPage").attr("href",preParm);
     $("#NextPage").attr("href",nexParm);
     
-    $("#PreviousPage").bind("click", { "page": ((currentPage - 1) < 0 ? 0 : (currentPage - 1)), "objClassName": objClassName ,"isGoTop":"true"}, displayList);
+    $("#PreviousPage").on("click", { "page": ((currentPage - 1) < 0 ? 0 : (currentPage - 1)), "objClassName": objClassName ,"isGoTop":"true"}, displayList);
 
-    $("#NextPage").bind("click", { "page": ((Number(currentPage) + 1) > maxPage ? maxPage : (Number(currentPage) + 1)), "objClassName": objClassName,"isGoTop":"true" }, displayList);
+    $("#NextPage").on("click", { "page": ((Number(currentPage) + 1) > maxPage ? maxPage : (Number(currentPage) + 1)), "objClassName": objClassName,"isGoTop":"true" }, displayList);
 }
 
 //导航
@@ -105,6 +105,7 @@ function bindDirection() {
     if (!ui) {ui = "1";}
     switch (ui) {
         case "1":
+            // wedding
             $(".step2_direction_tab_home").addClass("current");
             $(".step2_content_list").show();
             bindListPage(countPerPage,"step2_content_list");
@@ -115,6 +116,7 @@ function bindDirection() {
             $(".step2_page").show();
             break;
         case "2":
+            // kids
             $(".step2_direction_tab_children").addClass("current");
             $(".step2_children_content_list").show();
             bindListPage(countPerPage,"step2_children_content_list");
@@ -125,6 +127,7 @@ function bindDirection() {
             $(".step2_page").show();
             break;
         case "3":
+            // business
             $(".step2_direction_tab_business").addClass("current");
             $(".step2_business_content_list").show();
             bindListPage(countPerPage,"step2_business_content_list");
@@ -135,17 +138,27 @@ function bindDirection() {
             $(".step2_page").show();
             break;
         case "4":
+            // about us
             $(".step2_direction_tab_aus").addClass("current");
             $(".step2_content_aus").show();
             $(".step2_direction_search").hide(); ;
             $(".step2_page").hide();
             break;
         case "5":
+            // contact us
             $(".step2_direction_tab_cus").addClass("current");
             $(".step2_content_cus").show();
             $(".step2_direction_search").hide();
             $(".step2_page").hide();
             break;
+        case "6":
+            // book
+            $(".step2_direction_tab_book").addClass("current");
+            $(".step2_content_book").show();
+            $(".step2_direction_search").hide();
+            $(".step2_page").hide();
+            break;
+
     }
 }
 

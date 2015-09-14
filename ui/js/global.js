@@ -45,7 +45,7 @@ function firstLoad(sec) {
 }
 //首页转内页
 function bindClickHome() {
-    $("#step1").bind("click", function() {
+    $("#step1").on("click", function() {
         $("#step1").hide();
         $("#step2").show();
         $("body").css("background-color", "#86cbc8");

@@ -9,7 +9,9 @@ input::-moz-focus-inner{border:0;padding:0;margin:0}
 a,a:link,a:visited{font:12px/20px "Microsoft YaHei",Arial,宋体;color:#808080;text-decoration:none}
 a:hover,a:active{color:#777}
 .StyleCursorPointer{cursor:pointer}
-.fix{clear:both}
+/*.fix{clear:both}*/
+.fix:after {content: " ";display: block;clear: both;height: 0;}
+.fix {zoom: 1;}
 .dnone{display: none;}
 .paddingBottom50{padding-bottom: 50px;}
 /* step1 */
@@ -67,6 +69,9 @@ a:hover,a:active{color:#777}
         .step2_content_cu_title{width:750px;margin:0 auto;text-align:left;color:#469f9b;font-size:18px;height:37px;line-height:37px;border-bottom:solid 1px #e6e6e6}
         .step2_content_cu_area{width:750px;margin:0 auto;text-align:left;padding-top:25px;padding-bottom:30px}
         .step2_content_cu_area div{font-size:15px;color:#a4a4a4;height:30px;line-height:30px}
+    /*预订*/
+    .step2_content_book{width:100%;display:none;background:#86CBC8;}
+
 /*分页*/        
 .step2_page{background-color:#fff;height:80px;width:100%}
     .step2_page_area{position:relative;width:750px;height:80px;margin:0 auto}
@@ -80,8 +85,11 @@ a:hover,a:active{color:#777}
     .step2_page_next{float:right;width:122px;text-align:right}
         .step2_page_next a{color:#469f9b;font-size:18px;height:80px;line-height:80px}
         .step2_page_next a:hover{text-decoration:underline}
-.step2_foot{padding-top:70px;padding-bottom:40px}
-    .step2_foot_area{color:#fff;font-size:14px;text-align:center}
+.step2_foot{height: 55px;line-height: 55px;position: absolute;border-top: solid 1px #aae1de;margin-top: 100px;width: 100%;left: 0px;right: 0px;min-width:985px;}
+    .step2_foot_area{color:#cdf5f3;font-size:12px;text-align:center;height: 55px;line-height: 55px;position: relative;}
+        .step2_foot_area_left{color:#cdf5f3;font-size:12px;float: left;height: 55px;line-height: 55px;padding-left: 100px;}
+        .step2_foot_area_right{color:#cdf5f3;font-size:12px;float: right;height: 55px;line-height: 55px;padding-right: 100px;}
+
     
 /*step3 详细 start*/
 
