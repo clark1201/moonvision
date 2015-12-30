@@ -1,0 +1,21 @@
+.bookContainer{width: 775px;position: relative;margin: 0 auto;margin-top:80px;}
+  #step1{display:block;}
+  #step2, #step3, #step4, #step5{display:none;}
+  .book-title{color:#fff;font-size:20px;}
+  .book-item-container{margin:40px 0;}
+    ul.book-items{height:187px;}
+      ul.book-items li{float:left;display:inline-block;width:185px;height:185px;margin-right:9px;list-style:none;}
+      ul.book-items li:last-child{margin-right:0px;}
+        ul.book-items li a{position:relative;display:inline-block;width:100%;height:100%;border:solid 1px #fff;border-radius:5px;color:#fff;text-align:center;}
+        ul.book-items li a:hover{border-color:#fffb98;color:#fffb98;}
+        ul.book-items li a.wedding{background:url(/ui/image/booking/wedding.png) center 44px no-repeat;}
+        ul.book-items li a.wedding:hover{background-image:url(/ui/image/booking/wedding-hover.png);}
+        ul.book-items li a.kids{background:url(/ui/image/booking/kids.png) center 44px no-repeat;}
+        ul.book-items li a.kids:hover{background-image:url(/ui/image/booking/kids-hover.png);}
+        ul.book-items li a.marry{background:url(/ui/image/booking/marry.png) center 44px no-repeat;}
+        ul.book-items li a.marry:hover{background-image:url(/ui/image/booking/marry-hover.png);}
+        ul.book-items li a.business{background:url(/ui/image/booking/business.png) center 44px no-repeat;}
+        ul.book-items li a.business:hover{background-image:url(/ui/image/booking/business-hover.png);}
+          ul.book-items li a .book-item-text{font-size:12px;background:url(/ui/image/booking/booking-enter.png) right center no-repeat;padding-right:12px;margin-left:6px;position:relative;top:134px;}
+          ul.book-items li a:hover .book-item-text{background-image:url(/ui/image/booking/booking-enter-hover.png);}
+
