@@ -1,8 +1,10 @@
-.bookContainer{width: 775px;position: relative;margin: 0 auto;margin-top:80px;}
+/*预订通用*/
+.bookContainer{width:775px;position: relative;margin: 0 auto;margin-top:80px;}
   #step1{display:block;}
   #step2, #step3, #step4, #step5{display:none;}
   .book-title{color:#fff;font-size:20px;}
   .book-item-container{margin:40px 0;}
+/*step1*/
     ul.book-items{height:187px;}
       ul.book-items li{float:left;display:inline-block;width:185px;height:185px;margin-right:9px;list-style:none;}
       ul.book-items li:last-child{margin-right:0px;}
@@ -18,4 +20,70 @@
         ul.book-items li a.business:hover{background-image:url(/ui/image/booking/business-hover.png);}
           ul.book-items li a .book-item-text{font-size:12px;background:url(/ui/image/booking/booking-enter.png) right center no-repeat;padding-right:12px;margin-left:6px;position:relative;top:134px;}
           ul.book-items li a:hover .book-item-text{background-image:url(/ui/image/booking/booking-enter-hover.png);}
+/*step2*/
+.book-term-tip{margin-top:40px;color:#fff;font-size:12px;}
+.book-term-content-container{margin-top:32px;padding:32px 34px;background-color:#fff;height:400px;overflow:auto;}
+.book-term-content-container p{color:#666;}
+  .book-term-title{font-size:16px;margin-bottom:32px;}
+  .book-term-content{font-size:12px;}
+  .book-term-agree-container{margin-top:30px;}
+    .book-term-agree-container a{display:inline-block;text-align:center;}
+    a#book-term-agree{width:270px;}
+    a#book-term-reject{width:130px;color:#009395;}
+/*step3*/
+.book-select-date-tip{margin-top:40px;color:#fff;font-size:12px;}
+.book-select-date-container{margin-top:32px;}
+  .book-select-date-title{height:40px;line-height:40px;background-color:#409b96;padding:0 20px;position:relative;width:828px;}
+    .book-select-date-title div{height:40px;line-height:40px;display:inline-block;position:absolute;}
+      .book-select-date-back{font-size:12px;color:#fff;left:20px;z-index:2}
+        .book-select-date-back a{font-size:inherit;height:inherit;line-height:inherit;color:#fff;}
+      .book-select-date-text{font-size:20px;color:#fff;width:100%;text-align:center;z-index:1;}
+      .book-select-date-full-tip{font-size:12px;color:#faff72;right:20px;}
+      .book-select-date-table{width:828px}
+        .book-select-date-table ul{display:inline-block;}
+          .book-select-date-table ul li{list-style:none;width:268px;height:336px;background-color:#fff;display:inline-block;float:left;margin-right:12px;margin-bottom:12px;}
+          .book-select-date-table ul li:nth-child(3n){margin-right:0px;}
+/*step4*/
+.book-detail-info-tip{margin-top:40px;color:#fff;font-size:12px;}
+.book-detail-info-form-container{margin-top:32px;height:680px;background-color:#fff;padding:50px;}
+  .book-detail-info-form-container div, .book-detail-info-form-container span, .book-detail-info-form-container label{font-size:14px;color:#666;}
+    .book-detail-info-item{min-height:35px;margin-bottom:5px;width:100%;}
+      .book-detail-info-item-label{min-width:100px;max-width:100%;display:inline-block;font-size:14px;color:#666;position:relative;}
+      .book-detail-info-item-label-more-rows{min-width:100px;max-width:100%;display:inline-block;font-size:14px;color:#666;position:relative;vertical-align:top;}
+      .book-detail-info-item-enter{min-width:500px;max-width:100%;display:inline-block;}
+        .label-radio{cursor:pointer;}
+        .select-frame{border:solid 1px #C8C8C8;border-radius:3px;width:15px;display:inline-block;height:15px;position:relative;top:3px;margin-right:10px;}
+        .select-frame-selected{background:url(/ui/image/booking/selected.png) center center no-repeat;}
+        .book-detail-info-item-input{height:30px;line-height:30px;width:150px;display:inline-block;}
+        label.selected-date{font-size:16px;color:#0cc1ba;}
+        a.re-select-date{font-size:14px;color:#ff7f58;}
+        .spacing{display:inline-block;}
+.book-detail-info-submit-container{margin-top:30px;}
+  .book-detail-info-submit-container a{display:inline-block;text-align:center;}
+  a#book-detail-info-submit{width:270px;}
+  a#book-detail-info-cancel{width:130px;color:#009395;}
+/*step5*/
+.book-confirm-tip{margin-top:40px;color:#fff;font-size:12px;}
+.book-confirm-content-container{margin-top:32px;background-color:#fff;padding:50px;}
+
+.book-confirm-agree-container{margin-top:30px;}
+  .book-confirm-agree-container a{display:inline-block;text-align:center;}
+  a#book-confirm-agree{width:270px;}
+  a#book-confirm-reject{width:130px;color:#009395;}
+/*step6 我的订单*/
+.book-order-tip{margin-top:40px;color:#fff;font-size:12px;}
+.order-count{color:yellow;}
+.book-order-content-container{margin-top:28px;background-color:#fff;padding:0;width:788px;height:232px;overflow:hidden;}
+  .book-order-info-item{height:42px;line-height:42px;padding-left:47px;}
+    .book-order-info-item-label{min-width:100px;max-width:100%;display:inline-block;font-size:14px;color:#666;position:relative;}
+  .book-order-status-item{border-top:solid 1px #4dbcd6;height:64px;line-height:64px;position:relative;padding-left:47px;}
+     a.order-button{height:64px;display:inline-block;top:-1px;position:absolute;right:0;width:124px;text-align:center;line-height:64px;color:#fff;font-size:14px;}
+     a.unpay{background:#f22828;}
+     a.payed{background:#31aea8;}
+
+.book-order-agree-container{margin-top:30px;}
+  .book-order-agree-container a{display:inline-block;text-align:center;}
+  a#book-order-agree{width:270px;}
+  a#book-order-reject{width:130px;color:#009395;}
+
 

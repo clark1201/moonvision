@@ -21,6 +21,8 @@ function firstLoad(sec) {
         $("#step2").show();
         $("body").css("background-color", "#86cbc8");
     }
+    cookies = ['item','select_date','step']
+    removeCookies(cookies);
 }
 //首页转内页
 function bindClickHome() {

@@ -19,18 +19,22 @@ function getHeaderIndex(id, par){
   return get_par;
 }
 // 设置 cookie
-function SetCookie(name, value, time)//存放cookies函数     SetCookie("aa",true)
-{
-    var Days = time; //此 cookie 将被保存 3 天
-    var exp = new Date();    //now
-    //exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
-    exp.setTime(exp.getTime() + Days * 1000);
-    document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+// 获取cookies函数
+function GetCookie(name){
+  return $.cookie(name);
 }
-// 获取 cookie
-function GetCookie(name)//读取cookies函数    GetCookie("aa")
-{
-    var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
-    if (arr != null) return unescape(arr[2]);
-    return null;
+// 存放cookies函数
+function SetCookie(name, value){
+  return $.cookie(name, value);
+}
+// 删除cookies函数
+function removeCookie(name){
+  return $.removeCookie(name);
+}
+// 批量删除cookies函数
+function removeCookies(nameArr){
+  for (var i = nameArr.length - 1; i >= 0; i--) {
+    removeCookie(nameArr[i]);
+  }
+  return $.removeCookie(name);
 }

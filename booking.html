@@ -1,15 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
     <title>月木视觉</title>
-    <script src="ui/js/jquery.min.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="3rd/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="3rd/css/bootstrap-theme.min.css" />
     <link rel="stylesheet" type="text/css" href="ui/css/global.css" />
-    <link rel="stylesheet" type="text/css" href="ui/css/booking.css" />
+    <script src="ui/js/jquery.min.js" type="text/javascript"></script>
+    <script src="3rd/js/jquery.cookie.js" type="text/javascript"></script>
+    <script src="3rd/js/bootstrap.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="ui/js/tools.js"></script>
+    <link rel="stylesheet" type="text/css" href="ui/css/booking.css" />
+    
 </head>
 <body>
   <div>
@@ -46,44 +48,278 @@
       </div>
       <!-- 预订第一步 end -->
       <!-- 预订第二步 start -->
-      <div id="step2">
+      <div id="step2" class="step">
         <div class="book-title">预约档期</div>
         <div class="book-item-container">
-
+          <div class="book-term-tip">预约服务前，请仔细阅读以下服务协议条款。</div>
+          <div class="book-term-content-container">
+            <p class="book-term-title">月木VISION 儿童摄影拍摄服务协议</p>
+            <p class="book-term-content">经我们双方协定</p>
+            <p class="book-term-content">1.</p>
+            <p class="book-term-content">2.</p>
+            <p class="book-term-content">3.</p>
+            <p class="book-term-content">4.</p>
+            <p class="book-term-content">5.</p>
+            <p class="book-term-content">6.</p>
+            <p class="book-term-content">7.</p>
+            <p class="book-term-content">8.</p>
+            <p class="book-term-content">9.</p>
+            <p class="book-term-content">10.</p>
+          </div>
+          <div class="book-term-agree-container">
+            <a id="book-term-agree" href="javascript:void(0)" class="btn btn-blue">同意以上协议</a>
+            <a id="book-term-reject" href="javascript:void(0)">不同意，返回</a>
+          </div>
         </div>
       </div>
       <!-- 预订第二步 end -->
       <!-- 预订第三步 start -->
-      <div id="step3">
+      <div id="step3" class="step">
         <div class="book-title">预约档期 - 选择时间</div>
         <div class="book-item-container">
-
+          <div class="book-select-date-tip">请选择你要预订的拍摄日期。所有系列的所有套系都不指定摄影师拍摄。预订后，拍摄系列不做更改。</div>
+          <div class="book-select-date-container">
+            <div class="book-select-date-title">
+              <div class="book-select-date-back">
+                <a id="book-select-date-back-a" href="javascript:void(0)">返回</a>
+              </div>
+              <div id="book-select-date-text" class="book-select-date-text">2015.12-2016.7</div>
+              <div class="book-select-date-full-tip">灰色日期为预订已满</div>
+            </div>
+            <div class="book-select-date-table">
+              <ul>
+                <li><a href="javascript:void(0)" class="book-select-date-item" data-date="2016-1-1">1</a></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul>
+              <div class="fix"></div>
+            </div>
+          </div>
         </div>
       </div>
       <!-- 预订第三步 end -->
       <!-- 预订第四步 start -->
-      <div id="step4">
+      <div id="step4" class="step">
         <div class="book-title">预约档期 - 填写详细信息</div>
         <div class="book-item-container">
-
+          <div class="book-detail-info-tip">请仔细填写订单信息并选择拍摄套餐。</div>
+          <div class="book-detail-info-form-container">
+            <form class="form-horizontal">
+              <div class="book-detail-info-item">
+                <label class="book-detail-info-item-label">拍摄日期：</label>
+                <div class="book-detail-info-item-enter">
+                  <label id="selectedDate" class="selected-date"></label>
+                  <span class="spacing" style="width:35px"></span>
+                  <a href="javascript:void(0)" id="reSelectDate" class="re-select-date">重选日期</a>
+                </div>
+              </div>
+              <div class="book-detail-info-item">
+                <label class="book-detail-info-item-label">拍摄时间：</label>
+                <div class="book-detail-info-item-enter">
+                  <label class="label-radio"><span class="select-frame"></span>上午9：30</label>
+                  <span class="spacing" style="width:35px;"></span>
+                  <label class="label-radio"><span class="select-frame"></span>下午2：00</label>
+                </div>
+              </div>
+              <div class="book-detail-info-item">
+                <label class="book-detail-info-item-label-more-rows">拍摄套餐：</label>
+                <div class="book-detail-info-item-enter">
+                  <label class="label-radio"><span class="select-frame"></span>MOONKIDS 套餐1：2000元（订金500元）</label>
+                  <br />
+                  <label class="label-radio"><span class="select-frame"></span>MOONKIDS 套餐2：3000元（订金500元）</label>
+                </div>
+              </div>
+              <div class="book-detail-info-item">
+                <label for="name" class="book-detail-info-item-label">宝宝姓名：</label>
+                <div class="book-detail-info-item-enter">
+                  <input type="text" class="form-control book-detail-info-item-input" id="name">
+                </div>
+              </div>
+              <div class="book-detail-info-item">
+                <label for="nickName" class="book-detail-info-item-label">宝宝小名：</label>
+                <div class="book-detail-info-item-enter">
+                  <input type="text" class="form-control book-detail-info-item-input" id="nickName"><span style="color:#bcbcbc;">（选填）</span>
+                </div>
+              </div>
+              <div class="book-detail-info-item">
+                <label for="gender" class="book-detail-info-item-label">宝宝性别：</label>
+                <div class="book-detail-info-item-enter">
+                  <input type="text" class="form-control book-detail-info-item-input" id="gender">
+                </div>
+              </div>
+              <div class="book-detail-info-item">
+                <label for="age" class="book-detail-info-item-label">宝宝年龄：</label>
+                <div class="book-detail-info-item-enter">
+                  <input type="text" class="form-control book-detail-info-item-input" id="age">
+                </div>
+              </div>
+              <div class="book-detail-info-item">
+                <label for="parentsName" class="book-detail-info-item-label">您的称呼：</label>
+                <div class="book-detail-info-item-enter">
+                  <input type="text" class="form-control book-detail-info-item-input" id="parentsName">
+                </div>
+              </div>
+              <div class="book-detail-info-item">
+                <label for="phone" class="book-detail-info-item-label">您的手机：</label>
+                <div class="book-detail-info-item-enter">
+                  <input type="text" class="form-control book-detail-info-item-input" id="phone">
+                </div>
+              </div>
+              <div class="book-detail-info-item">
+                <label for="parentsqq" class="book-detail-info-item-label">您的QQ：</label>
+                <div class="book-detail-info-item-enter">
+                  <input type="text" class="form-control book-detail-info-item-input" id="parentsqq">
+                </div>
+              </div>
+              <div class="book-detail-info-item">
+                <label for="expressAddress" class="book-detail-info-item-label">快递地址：</label>
+                <div class="book-detail-info-item-enter">
+                  <input type="text" style="width:320px;" class="form-control book-detail-info-item-input" id="expressAddress">
+                </div>
+              </div>
+              <div class="book-detail-info-item">
+                <label for="addressee" class="book-detail-info-item-label">收件人姓名：</label>
+                <div class="book-detail-info-item-enter">
+                  <input type="text" class="form-control book-detail-info-item-input" id="addressee">
+                </div>
+              </div>
+              <div class="book-detail-info-item">
+                <label for="inputtext3" class="book-detail-info-item-label-more-rows">备注：</label>
+                <div class="book-detail-info-item-enter">
+                  <textarea class="form-control book-detail-info-item-input" style="width:320px;"></textarea><span style="color:#bcbcbc;">（选填）</span>
+                </div>
+              </div>
+              <div class="book-detail-info-item">
+                <label for="inputtext3" class="book-detail-info-item-label">亲子照确认：</label>
+                <div class="book-detail-info-item-enter">
+                  <label class="label-radio"><span class="select-frame"></span>需要拍摄亲子照</label><span style="color:#bcbcbc;">（仅限宝宝和父母）</span>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="book-detail-info-submit-container">
+            <a id="book-detail-info-submit" href="javascript:void(0)" class="btn btn-blue">提交预订</a>
+            <a id="book-detail-info-cancel" href="javascript:void(0)">取消</a>
+          </div>
         </div>
       </div>
       <!-- 预订第四步 end -->
       <!-- 预订第五步 start -->
-      <div id="step5">
+      <div id="step5" class="step">
         <div class="book-title">预约档期 - 确认订单</div>
         <div class="book-item-container">
-
+          <div class="book-confirm-tip">请确认订单，确认无误，支付订金。</div>
+          <div class="book-confirm-content-container">
+            <form class="form-horizontal">
+              <div class="book-detail-info-item">
+                <label class="book-detail-info-item-label">您的订单：</label>
+                <label id="" class="book-detail-info-item-label"></label>
+              </div>
+              <div class="book-detail-info-item">
+                <label class="book-detail-info-item-label">订单号：</label>
+                <label class="book-detail-info-item-label"></label>
+              </div>
+              <div class="book-detail-info-item">
+                <label class="book-detail-info-item-label">拍摄地址：</label>
+                <label class="book-detail-info-item-label">上海市杨浦区大学路292号702</label>
+              </div>
+              <div class="book-detail-info-item">
+                <label class="book-detail-info-item-label">订金金额：</label>
+                <label class="book-detail-info-item-label">500元</label>
+              </div>
+            </form>
+          </div>
+          <div class="book-confirm-agree-container">
+            <a id="book-confirm-agree" href="javascript:void(0)" class="btn btn-blue">确认支付订金</a>
+            <a id="book-confirm-reject" href="javascript:void(0)">取消</a>
+          </div>
         </div>
       </div>
       <!-- 预订第五步 end -->
+      <!-- 预订第六步 start -->
+      <div id="step6" class="step">
+        <div class="book-title">您一共有<span id="orderCount" class="order-count">3</span>个订单</div>
+        <div class="book-item-container">
+          <div class="book-order-content-container">
+            <div class="book-order-info-item">
+              <label class="book-order-info-item-label">拍摄地址：</label>
+              <label class="book-order-info-item-label">上海市杨浦区大学路292号702</label>
+            </div>
+            <div class="book-order-info-item">
+              <label class="book-order-info-item-label">拍摄地址：</label>
+              <label class="book-order-info-item-label">上海市杨浦区大学路292号702</label>
+            </div>
+            <div class="book-order-info-item">
+              <label class="book-order-info-item-label">拍摄地址：</label>
+              <label class="book-order-info-item-label">上海市杨浦区大学路292号702</label>
+            </div>
+            <div class="book-order-info-item">
+              <label class="book-order-info-item-label">拍摄地址：</label>
+              <label class="book-order-info-item-label">上海市杨浦区大学路292号702</label>
+            </div>
+            <div class="book-order-status-item">
+              <label class="book-order-info-item-label">拍摄地址：</label>
+              <label class="book-order-info-item-label">上海市杨浦区大学路292号702</label>
+              <a href="#" class="order-button unpay">继续付款</a>
+            </div>
+          </div>
+          <div class="book-order-content-container">
+            <div class="book-order-info-item">
+              <label class="book-order-info-item-label">拍摄地址：</label>
+              <label class="book-order-info-item-label">上海市杨浦区大学路292号702</label>
+            </div>
+            <div class="book-order-info-item">
+              <label class="book-order-info-item-label">拍摄地址：</label>
+              <label class="book-order-info-item-label">上海市杨浦区大学路292号702</label>
+            </div>
+            <div class="book-order-info-item">
+              <label class="book-order-info-item-label">拍摄地址：</label>
+              <label class="book-order-info-item-label">上海市杨浦区大学路292号702</label>
+            </div>
+            <div class="book-order-info-item">
+              <label class="book-order-info-item-label">拍摄地址：</label>
+              <label class="book-order-info-item-label">上海市杨浦区大学路292号702</label>
+            </div>
+            <div class="book-order-status-item">
+              <label class="book-order-info-item-label">拍摄地址：</label>
+              <label class="book-order-info-item-label">上海市杨浦区大学路292号702</label>
+              <a href="#" class="order-button payed">我还要预订</a>
+            </div>
+          </div>
+          <div class="book-order-content-container">
+            <div class="book-order-info-item">
+              <label class="book-order-info-item-label">拍摄地址：</label>
+              <label class="book-order-info-item-label">上海市杨浦区大学路292号702</label>
+            </div>
+            <div class="book-order-info-item">
+              <label class="book-order-info-item-label">拍摄地址：</label>
+              <label class="book-order-info-item-label">上海市杨浦区大学路292号702</label>
+            </div>
+            <div class="book-order-info-item">
+              <label class="book-order-info-item-label">拍摄地址：</label>
+              <label class="book-order-info-item-label">上海市杨浦区大学路292号702</label>
+            </div>
+            <div class="book-order-info-item">
+              <label class="book-order-info-item-label">拍摄地址：</label>
+              <label class="book-order-info-item-label">上海市杨浦区大学路292号702</label>
+            </div>
+            <div class="book-order-status-item">
+              <label class="book-order-info-item-label">拍摄地址：</label>
+              <label class="book-order-info-item-label">上海市杨浦区大学路292号702</label>
+              <a href="#" class="order-button payed">我还要预订</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 预订第六步 end -->
       <div class="fix"></div>
     </div>
     <script type="text/javascript" src="footer.js"></script>
   </div>
 </body>
-
-<script src="3rd/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="ui/js/booking.js" type="text/javascript"></script>
 
 </html>
