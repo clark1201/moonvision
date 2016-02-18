@@ -33,16 +33,24 @@
 /*step3*/
 .book-select-date-tip{margin-top:40px;color:#fff;font-size:12px;}
 .book-select-date-container{margin-top:32px;}
-  .book-select-date-title{height:40px;line-height:40px;background-color:#409b96;padding:0 20px;position:relative;width:828px;}
-    .book-select-date-title div{height:40px;line-height:40px;display:inline-block;position:absolute;}
+  .book-select-date-title{height:51px;line-height:51px;background-color:#409b96;padding:0 20px;position:relative;width:828px;}
+    .book-select-date-title div{height:51px;line-height:51px;display:inline-block;position:absolute;}
       .book-select-date-back{font-size:12px;color:#fff;left:20px;z-index:2}
         .book-select-date-back a{font-size:inherit;height:inherit;line-height:inherit;color:#fff;}
       .book-select-date-text{font-size:20px;color:#fff;width:100%;text-align:center;z-index:1;}
       .book-select-date-full-tip{font-size:12px;color:#faff72;right:20px;}
       .book-select-date-table{width:828px}
-        .book-select-date-table ul{display:inline-block;}
-          .book-select-date-table ul li{list-style:none;width:268px;height:336px;background-color:#fff;display:inline-block;float:left;margin-right:12px;margin-bottom:12px;}
-          .book-select-date-table ul li:nth-child(3n){margin-right:0px;}
+        .book-select-date-table ul#displayCalenderContainer{display:inline-block;}
+          .book-select-date-table ul#displayCalenderContainer li{list-style:none;width:268px;height:336px;background-color:#fff;display:inline-block;float:left;margin-right:12px;margin-bottom:12px;padding:19px 30px 42px 30px;}
+          .book-select-date-table ul#displayCalenderContainer li:nth-child(3n){margin-right:0px;}
+            .book-select-date-table ul#displayCalenderContainer li .book-select-date-item{font-size:14px;display:inline-block;width:34px;height:34px;line-height:34px;cursor:pointer;}
+            .book-select-date-table ul#displayCalenderContainer li .book-select-date-item:hover{background-color:#86CBC8;color:#fff;text-decoration:none;}
+            .book-select-date-table ul#displayCalenderContainer li .book-select-date-item-content-container{margin:0px -10px;}
+              .book-select-date-table ul#displayCalenderContainer p{font-size:20px;padding-bottom:44px;}
+              .book-select-date-item-content-container table{width:100%;}
+              .book-select-date-item-content-container table th{color:#CACACA;text-align:center;font-size:14px;}
+              .book-select-date-item-content-container table td{text-align:center;}
+
 /*step4*/
 .book-detail-info-tip{margin-top:40px;color:#fff;font-size:12px;}
 .book-detail-info-form-container{margin-top:32px;height:680px;background-color:#fff;padding:50px;}

@@ -10,3 +10,4 @@
             .step2_direction_tab .bookLabel-container a{height: 38px;line-height: 30px;width: 100%;}
             .step2_direction_tab .bookLabel-container a:hover{background: #e5f3f3;}
 .bookLabel{width:150px;float:left;font-size:14px;color:#757575;height:70px;line-height:70px;text-align:center;}
+.bookLabel:hover{background-color: #E5F3F3;color: #4ea9aa;}
