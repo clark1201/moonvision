@@ -41,11 +41,11 @@
             .step2_content_au_text img{margin:0 auto;margin-top:10px}
             .step2_content_area_au_more{height:60px; line-height:60px;width:100%;text-align:center;font-size:14px;color:#8fcfcc}
     /*联系我们*/
-    .step2_content_cus{width:100%;padding-top:40px;height:450px;display:none}
+    .step2_content_cus{width:100%;padding-top:40px;height:490px;display:none}
         .step2_content_cu_title{width:750px;margin:0 auto;text-align:left;color:#469f9b;font-size:18px;height:37px;line-height:37px;border-bottom:solid 1px #e6e6e6}
         .step2_content_cu_area{width:750px;margin:0 auto;text-align:left;padding-top:25px;padding-bottom:30px}
         .step2_content_cu_area div{font-size:15px;color:#a4a4a4;height:30px;line-height:30px}
-    /*预订*/
+    /*预定*/
     .step2_content_book{width:100%;display:none;background:#86CBC8;}
 
 /*分页*/        

@@ -1,4 +1,4 @@
-/*预订通用*/
+/*预定通用*/
 .bookContainer{width:775px;position: relative;margin: 0 auto;margin-top:80px;}
   #step1{display:block;}
   #step2, #step3, #step4, #step5{display:none;}
@@ -22,7 +22,8 @@
           ul.book-items li a:hover .book-item-text{background-image:url(/ui/image/booking/booking-enter-hover.png);}
 /*step2*/
 .book-term-tip{margin-top:40px;color:#fff;font-size:12px;}
-.book-term-content-container{margin-top:32px;padding:32px 34px;background-color:#fff;height:400px;overflow:auto;}
+.book-term-content-container-padding{margin-top:32px;background:#fff;padding:20px 0;display:none;}
+.book-term-content-container{padding:32px 34px;background-color:#fff;height:400px;overflow:auto;}
 .book-term-content-container p{color:#666;}
   .book-term-title{font-size:16px;margin-bottom:32px;}
   .book-term-content{font-size:12px;}
@@ -50,6 +51,7 @@
               .book-select-date-item-content-container table{width:100%;}
               .book-select-date-item-content-container table th{color:#CACACA;text-align:center;font-size:14px;}
               .book-select-date-item-content-container table td{text-align:center;}
+        .book-select-date-table a#step3_return{color:#009395;}
 
 /*step4*/
 .book-detail-info-tip{margin-top:40px;color:#fff;font-size:12px;}
@@ -78,7 +80,7 @@
   .book-confirm-agree-container a{display:inline-block;text-align:center;}
   a#book-confirm-agree{width:270px;}
   a#book-confirm-reject{width:130px;color:#009395;}
-/*step6 我的订单*/
+/*step6 我的定单*/
 .book-order-tip{margin-top:40px;color:#fff;font-size:12px;}
 .order-count{color:yellow;}
 .book-order-content-container{margin-top:28px;background-color:#fff;padding:0;width:788px;height:232px;overflow:hidden;}
@@ -93,5 +95,6 @@
   .book-order-agree-container a{display:inline-block;text-align:center;}
   a#book-order-agree{width:270px;}
   a#book-order-reject{width:130px;color:#009395;}
-
+/*step error*/
+a#steperror_return{color:#009395;}
 

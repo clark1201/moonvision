@@ -1,4 +1,4 @@
-.step2_direction{position:fixed;left:0px;top:0px;background:#FFF;height:70px;width:100%;min-width:985px;right:0px;text-align:center;margin:0 auto;z-index:10;}
+.step2_direction{position:fixed;left:0px;top:0px;background:#FFF;height:70px;width:100%;min-width:985px;right:0px;text-align:center;margin:0 auto;z-index:10;border-bottom:solid 1px #eee;}
     .step2_direction_container{position:relative;margin:0 auto;height:70px;display:inline-block;}
         .step2_direction_logo{float:left;width:179px;height:70px;background:url(../image/logo.png) center center no-repeat;margin-right:70px;}
         .step2_direction_tab{float:left}
