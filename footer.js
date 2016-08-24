@@ -3,6 +3,6 @@ var footer, tongji;
 
 tongji = '';
 
-footer = "<link rel='stylesheet' type='text/css' href='ui/css/footer.css' /><div class='step2_foot'><div class='step2_foot_area'><div class='step2_foot_area_left'>工作时间：09：00 - 18：00</div><div class='step2_foot_area_right'>月木视觉 | Copyrights MOONVISION. ALL Rights Reserved</div></div>" + tongji + "</div>";
+footer = "<link rel='stylesheet' type='text/css' href='ui/css/footer.css' /><div class='step2_foot'><div class='step2_foot_area'><div class='step2_foot_area_left'>工作时间：09：00 - 18：00</div><div class='step2_foot_area_right'><a href='/'>月木视觉</a> | Copyrights MOONVISION. ALL Rights Reserved</div></div>" + tongji + "</div>";
 
 document.write(footer);

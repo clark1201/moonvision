@@ -1,4 +1,5 @@
-.step2_foot{height:55px;line-height:55px;position:absolute;border-top:solid 1px #aae1de;margin-top:100px;width:100%;left:0px;right:0px;min-width:985px;z-index:10;}
+.step2_foot{height:55px;line-height:55px;position:fixed;border-top:solid 1px #aae1de;margin-top:100px;width:100%;left:0px;right:0px;min-width:985px;z-index:10;bottom:1px;}
     .step2_foot_area{color:#cdf5f3;font-size:12px;text-align:center;height:55px;line-height:55px;position:relative;background-color:#86CBC8;}
         .step2_foot_area_left{color:#cdf5f3;font-size:12px;float:left;height:55px;line-height:55px;padding-left:100px;}
         .step2_foot_area_right{color:#cdf5f3;font-size:12px;float:right;height:55px;line-height:55px;padding-right:100px;}
+        .step2_foot_area_right a,.step2_foot_area_right a:hover{color:#cdf5f3;}

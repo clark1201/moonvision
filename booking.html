@@ -11,6 +11,7 @@
     <script src="3rd/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="3rd/js/sugar.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="ui/js/tools.js"></script>
+    <script type="text/javascript" src="ui/js/enums.js"></script>
     <link rel="stylesheet" type="text/css" href="ui/css/booking.css" />
     
 </head>
@@ -171,17 +172,17 @@
               <div class="book-detail-info-item">
                 <label class="book-detail-info-item-label">拍摄时间：</label>
                 <div class="book-detail-info-item-enter">
-                  <label class="label-radio"><span class="select-frame"></span>上午9：30</label>
+                  <label class="label-radio"><span class="select-frame" data-key="book_am_pm" data-val="1"></span>上午9：30</label>
                   <span class="spacing" style="width:35px;"></span>
-                  <label class="label-radio"><span class="select-frame"></span>下午2：00</label>
+                  <label class="label-radio"><span class="select-frame" data-key="book_am_pm" data-val="2"></span>下午2：00</label>
                 </div>
               </div>
               <div class="book-detail-info-item">
                 <label class="book-detail-info-item-label-more-rows">拍摄套餐：</label>
                 <div class="book-detail-info-item-enter">
-                  <label class="label-radio"><span class="select-frame"></span>MOONKIDS 套餐1：2000元（定金500元）</label>
+                  <label class="label-radio"><span class="select-frame" data-key="book_package" data-val="1"></span>MOONKIDS 套餐1：2000元（定金500元）</label>
                   <br />
-                  <label class="label-radio"><span class="select-frame"></span>MOONKIDS 套餐2：3000元（定金500元）</label>
+                  <label class="label-radio"><span class="select-frame" data-key="book_package" data-val="2"></span>MOONKIDS 套餐2：3000元（定金500元）</label>
                 </div>
               </div>
               <div class="book-detail-info-item">
@@ -199,13 +200,16 @@
               <div class="book-detail-info-item">
                 <label for="gender" class="book-detail-info-item-label">宝宝性别：</label>
                 <div class="book-detail-info-item-enter">
-                  <input type="text" class="form-control book-detail-info-item-input" id="gender">
+                  <select type="text" class="form-control book-detail-info-item-input" id="gender">
+                    <option value="男" selected>男</option>
+                    <option value="女">女</option>
+                  </select>
                 </div>
               </div>
               <div class="book-detail-info-item">
                 <label for="age" class="book-detail-info-item-label">宝宝年龄：</label>
                 <div class="book-detail-info-item-enter">
-                  <input type="text" class="form-control book-detail-info-item-input" id="age">
+                  <input type="number" class="form-control book-detail-info-item-input" id="age">
                 </div>
               </div>
               <div class="book-detail-info-item">
@@ -223,7 +227,7 @@
               <div class="book-detail-info-item">
                 <label for="parentsqq" class="book-detail-info-item-label">您的QQ：</label>
                 <div class="book-detail-info-item-enter">
-                  <input type="text" class="form-control book-detail-info-item-input" id="parentsqq">
+                  <input type="text" class="form-control book-detail-info-item-input" id="parentsqq"><span style="color:#bcbcbc;">（选填）</span>
                 </div>
               </div>
               <div class="book-detail-info-item">
@@ -239,15 +243,15 @@
                 </div>
               </div>
               <div class="book-detail-info-item">
-                <label for="inputtext3" class="book-detail-info-item-label-more-rows">备注：</label>
+                <label for="mark" class="book-detail-info-item-label-more-rows">备注：</label>
                 <div class="book-detail-info-item-enter">
-                  <textarea class="form-control book-detail-info-item-input" style="width:320px;"></textarea><span style="color:#bcbcbc;">（选填）</span>
+                  <textarea class="form-control book-detail-info-item-input" style="width:320px;" id="mark"></textarea><span style="color:#bcbcbc;">（选填）</span>
                 </div>
               </div>
               <div class="book-detail-info-item">
-                <label for="inputtext3" class="book-detail-info-item-label">亲子照确认：</label>
+                <label for="isFamily" class="book-detail-info-item-label">亲子照确认：</label>
                 <div class="book-detail-info-item-enter">
-                  <label class="label-radio"><span class="select-frame"></span>需要拍摄亲子照</label><span style="color:#bcbcbc;">（仅限宝宝和父母）</span>
+                  <label class="label-radio"><span class="select-frame" data-key="is_family" data-val="1"></span>需要拍摄亲子照</label><span style="color:#bcbcbc;">（仅限宝宝和父母）</span>
                 </div>
               </div>
             </form>
@@ -255,6 +259,7 @@
           <div class="book-detail-info-submit-container">
             <a id="book-detail-info-submit" href="javascript:void(0)" class="btn btn-blue">提交预定</a>
             <a id="book-detail-info-cancel" href="javascript:void(0)">取消</a>
+            <span id="book-detail-error" class="error" style="display:none;">请将信息填写完整</span>
           </div>
         </div>
       </div>
@@ -268,11 +273,11 @@
             <form class="form-horizontal">
               <div class="book-detail-info-item">
                 <label class="book-detail-info-item-label">您的定单：</label>
-                <label id="" class="book-detail-info-item-label"></label>
+                <label id="order_info" class="book-detail-info-item-label"></label>
               </div>
               <div class="book-detail-info-item">
                 <label class="book-detail-info-item-label">定单号：</label>
-                <label class="book-detail-info-item-label"></label>
+                <label id="order_id" class="book-detail-info-item-label"></label>
               </div>
               <div class="book-detail-info-item">
                 <label class="book-detail-info-item-label">拍摄地址：</label>
@@ -285,7 +290,7 @@
             </form>
           </div>
           <div class="book-confirm-agree-container">
-            <a id="book-confirm-agree" href="javascript:void(0)" class="btn btn-blue">确认支付定金</a>
+            <a id="book-confirm-agree" href="javascript:void(0)" class="btn btn-blue">确认</a>
             <a id="book-confirm-reject" href="javascript:void(0)">取消</a>
           </div>
         </div>
@@ -369,11 +374,19 @@
       <div id="steperror" class="step">
         <div class="book-title text-center" style="margin-top:200px;">该项目的网上预订即将开通。</div>
         <div class="text-center" style="margin-top:40px;">
-          <a id="steperror_return">返回</a>
+          <a class="steperror_return">返回</a>
+        </div>
+      </div>
+      <div id="stepother" class="step">
+        <div class="book-title text-center" style="margin-top:200px;">
+          <span>商业洽谈请致电</span><span class="other-tel">TEL：13818172280</span>
+        </div>
+        <div class="text-center" style="margin-top:40px;">
+          <a class="steperror_return">返回</a>
         </div>
       </div>
       <!-- 预定第六步 end -->
-      <div class="fix"></div>
+      <div class="fix fixheight"></div>
     </div>
     <script type="text/javascript" src="footer.js"></script>
   </div>

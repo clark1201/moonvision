@@ -1,6 +1,7 @@
 .step2_direction{position:fixed;left:0px;top:0px;background:#FFF;height:70px;width:100%;min-width:985px;right:0px;text-align:center;margin:0 auto;z-index:10;border-bottom:solid 1px #eee;}
     .step2_direction_container{position:relative;margin:0 auto;height:70px;display:inline-block;}
         .step2_direction_logo{float:left;width:179px;height:70px;background:url(../image/logo.png) center center no-repeat;margin-right:70px;}
+        .step2_direction_logo .href_step2_direction_logo{display:inline-block;width:179px;height:70px;}
         .step2_direction_tab{float:left}
             .step2_direction_tab a{float:left;font-size:14px;color:#757575;width:121px;height:70px;line-height:70px;text-align:center}
             .step2_direction_tab a:hover{color: #4ea9aa;background-color:#E5F3F3;text-decoration:none;}

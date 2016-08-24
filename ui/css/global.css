@@ -3,6 +3,7 @@ html{-webkit-text-size-adjust:none;height:100%}
 *{margin:0;padding:0}
 body{background-color:#fff;height:100%;min-width:985px;}
 div,pre,td,form,li,input,select,textarea{font:12px/20px "Microsoft YaHei",Arial,宋体;color:#808080;resize:none;}
+textarea{resize:none;}
 table{border:0;border-collapse:collapse}
 img{border:0}
 input::-moz-focus-inner{border:0;padding:0;margin:0}
@@ -12,6 +13,7 @@ a:hover,a:active{color:#777;text-decoration:none;}
 /*.fix{clear:both}*/
 .fix:after{content: " ";display:block;clear:both;height:0;}
 .fix{zoom:1;}
+.fixheight{height:150px;}
 .dnone{display:none;}
 .paddingBottom50{padding-bottom:50px;}
 .btn{width:100%;}
@@ -23,3 +25,4 @@ a:hover,a:active{color:#777;text-decoration:none;}
 .text-left{text-align:left;}
 .text-center{text-align:center;}
 .text-right{text-align:right;}
+.error{color:#ff0000;}

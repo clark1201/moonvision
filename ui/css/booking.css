@@ -46,11 +46,16 @@
           .book-select-date-table ul#displayCalenderContainer li:nth-child(3n){margin-right:0px;}
             .book-select-date-table ul#displayCalenderContainer li .book-select-date-item{font-size:14px;display:inline-block;width:34px;height:34px;line-height:34px;cursor:pointer;}
             .book-select-date-table ul#displayCalenderContainer li .book-select-date-item:hover{background-color:#86CBC8;color:#fff;text-decoration:none;}
+            .book-select-date-table ul#displayCalenderContainer li .book-select-date-item-disabled{font-size:14px;display:inline-block;width:34px;height:34px;line-height:34px;cursor:default;color:#ddd;}
+            .book-select-date-table ul#displayCalenderContainer li span{left:0px;right:0px;top:0px;position:absolute;}
+            .book-select-date-table ul#displayCalenderContainer li .am-booking {width:0;height:0;border-top:34px solid #eee;border-right:34px solid transparent;font-size:14px;display:inline-block;width:34px;height:34px;line-height:34px;cursor:pointer;}
+            .book-select-date-table ul#displayCalenderContainer li .pm-booking {width:0;height:0;border-bottom:34px solid #eee;border-left:34px solid transparent;font-size:14px;display:inline-block;width:34px;height:34px;line-height:34px;cursor:pointer;}
+            .book-select-date-table ul#displayCalenderContainer li .all-booking {background-color:#eee;font-size:14px;display:inline-block;width:34px;height:34px;line-height:34px;cursor:default;}
             .book-select-date-table ul#displayCalenderContainer li .book-select-date-item-content-container{margin:0px -10px;}
               .book-select-date-table ul#displayCalenderContainer p{font-size:20px;padding-bottom:44px;}
               .book-select-date-item-content-container table{width:100%;}
               .book-select-date-item-content-container table th{color:#CACACA;text-align:center;font-size:14px;}
-              .book-select-date-item-content-container table td{text-align:center;}
+              .book-select-date-item-content-container table td{text-align:center;position:relative;}
         .book-select-date-table a#step3_return{color:#009395;}
 
 /*step4*/
@@ -96,5 +101,5 @@
   a#book-order-agree{width:270px;}
   a#book-order-reject{width:130px;color:#009395;}
 /*step error*/
-a#steperror_return{color:#009395;}
-
+a.steperror_return{color:#009395;}
+span.other-tel{margin-left:50px;}
