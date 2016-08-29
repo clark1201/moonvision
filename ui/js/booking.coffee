@@ -43,6 +43,9 @@ showStep = (step, item, date, infoObj)->
       order_id = Date.create(str_select_date).format('{yyyy}{MM}{dd}')
       $('#order_info').text "#{enums.packageName[infoObj['book_package']]} / #{str_select_date} / #{enums.bookingTime[infoObj['book_am_pm']]}"
       $('#order_id').text "#{order_id}#{infoObj['book_am_pm']}"
+    if +step is 6
+      # 展示订单列表
+      showAllBookItem()
   else if (+step is 2 and item is 'business')
     removeCookie 'step'
     $('.step').hide()
@@ -52,6 +55,12 @@ showStep = (step, item, date, infoObj)->
     $('.step').hide()
     $("#steperror").show()
   return
+
+showAllBookItem = ()->
+  if not (GetCookie('account') and GetCookie('accountid'))
+    location.href = '/login.html'
+  return
+
 _showBookingDate = (d)->
   # 已经预订过的日期，判断上午下午来选择样式
   for i in d

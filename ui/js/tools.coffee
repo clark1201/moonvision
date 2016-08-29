@@ -22,7 +22,8 @@ GetCookie = (name)->
 # // 存放cookies函数
 SetCookie = (name, value)->
   # cookie 保存一小时
-  return $.cookie(name, value, {expires:(new Date()).addHours(1)})
+  nowDate = new Date()
+  return $.cookie(name, value, {expires : nowDate.addHours(1)})
 # // 删除cookies函数
 removeCookie = (name)->
   return $.removeCookie(name)

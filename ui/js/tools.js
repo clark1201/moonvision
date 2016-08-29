@@ -30,8 +30,10 @@ GetCookie = function(name) {
 };
 
 SetCookie = function(name, value) {
+  var nowDate;
+  nowDate = new Date();
   return $.cookie(name, value, {
-    expires: (new Date()).addHours(1)
+    expires: nowDate.addHours(1)
   });
 };
 
