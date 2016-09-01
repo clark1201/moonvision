@@ -28,7 +28,8 @@ showStep = (step, item, date, infoObj)->
       SetCookie 'select_date', date, 3600
       $('#selectedDate').text date
     $('.book-term-content-container-padding').hide()
-    _displayCalendar date
+    if +step is 3
+      _displayCalendar date
     if +step is 4
       _initSubmit date
     else
@@ -38,8 +39,10 @@ showStep = (step, item, date, infoObj)->
       $(".#{item}").show()
       $('.book-term-content-container').scrollTop 0
     if +step is 5
-      if infoObj
-        str_select_date = infoObj['select_date']
+      infoObj = JSON.parse GetCookie('formData')
+      # if GetCookie 'formData'
+      # if infoObj
+      str_select_date = infoObj['select_date']
       order_id = Date.create(str_select_date).format('{yyyy}{MM}{dd}')
       $('#order_info').text "#{enums.packageName[infoObj['book_package']]} / #{str_select_date} / #{enums.bookingTime[infoObj['book_am_pm']]}"
       $('#order_id').text "#{order_id}#{infoObj['book_am_pm']}"
@@ -57,8 +60,15 @@ showStep = (step, item, date, infoObj)->
   return
 
 showAllBookItem = ()->
-  if not (GetCookie('account') and GetCookie('accountid'))
+  account = GetCookie('account')
+  accountid = GetCookie('accountid')
+  if not (account and accountid)
     location.href = '/login.html'
+  else
+    obj = 
+      bc : (d)->
+        return
+    ajax 'GET', '/CGI-BIN/getAllBookItem.pl', "accountid=#{accountid}&account=#{account}", obj
   return
 
 _showBookingDate = (d)->
@@ -121,9 +131,22 @@ enterNext = (d)->
   showStep step, item, $(@).data('date'), infoObj
   return
 enterLastStep = (d)->
-  enterNext d
-  cookies = ['item','select_date']
-  removeCookies cookies
+  jsonFormData = JSON.parse decodeURIComponent(GetCookie('formData'))
+  postData = 
+    book_time : jsonFormData['select_date']
+    book_am_pm : jsonFormData['book_am_pm']
+    order_id : $('#order_id').text()
+    account_id : GetCookie 'accountid'
+    detail : decodeURIComponent(GetCookie('formData'))
+  # postData = JSON.stringify postData
+  obj = 
+    contentType : 'application/x-www-form-urlencoded;charset=utf-8'
+    bc : (rs)->
+      enterNext d
+      cookies = ['item','select_date']
+      removeCookies cookies
+      return
+  ajax 'POST', '/CGI-BIN/submitBookitem.pl', postData, obj
   return
 
 _initSubmit = (date)->
@@ -200,6 +223,8 @@ bindBookItem = ()->
 
   $('#step5 #book-confirm-agree').on 'click', {step:6}, enterLastStep
   $('#step5 #book-confirm-reject').on 'click', {step:4}, enterNext
+
+  $('#step6 .order-button.payed').on 'click', {step:3}, enterNext
 
   $('a.steperror_return').on 'click', {step:1}, enterNext
   # 关闭时提示。

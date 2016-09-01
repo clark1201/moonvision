@@ -41,6 +41,7 @@ ajax = (_type, _url, _data, obj)->
     dataType: obj?.dataType or 'text'
     contentType: obj?.contentType or 'text/plain'
     success: (d)->
+      console.log d
       json_d = JSON.parse d
       obj.bc json_d
     error: (e)->

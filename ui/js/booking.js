@@ -37,7 +37,9 @@ showStep = function(step, item, date, infoObj) {
       $('#selectedDate').text(date);
     }
     $('.book-term-content-container-padding').hide();
-    _displayCalendar(date);
+    if (+step === 3) {
+      _displayCalendar(date);
+    }
     if (+step === 4) {
       _initSubmit(date);
     } else {
@@ -49,9 +51,8 @@ showStep = function(step, item, date, infoObj) {
       $('.book-term-content-container').scrollTop(0);
     }
     if (+step === 5) {
-      if (infoObj) {
-        str_select_date = infoObj['select_date'];
-      }
+      infoObj = JSON.parse(GetCookie('formData'));
+      str_select_date = infoObj['select_date'];
       order_id = Date.create(str_select_date).format('{yyyy}{MM}{dd}');
       $('#order_info').text("" + enums.packageName[infoObj['book_package']] + " / " + str_select_date + " / " + enums.bookingTime[infoObj['book_am_pm']]);
       $('#order_id').text("" + order_id + infoObj['book_am_pm']);
@@ -71,8 +72,16 @@ showStep = function(step, item, date, infoObj) {
 };
 
 showAllBookItem = function() {
-  if (!(GetCookie('account') && GetCookie('accountid'))) {
+  var account, accountid, obj;
+  account = GetCookie('account');
+  accountid = GetCookie('accountid');
+  if (!(account && accountid)) {
     location.href = '/login.html';
+  } else {
+    obj = {
+      bc: function(d) {}
+    };
+    ajax('GET', '/CGI-BIN/getAllBookItem.pl', "accountid=" + accountid + "&account=" + account, obj);
   }
 };
 
@@ -143,10 +152,25 @@ enterNext = function(d) {
 };
 
 enterLastStep = function(d) {
-  var cookies;
-  enterNext(d);
-  cookies = ['item', 'select_date'];
-  removeCookies(cookies);
+  var jsonFormData, obj, postData;
+  jsonFormData = JSON.parse(decodeURIComponent(GetCookie('formData')));
+  postData = {
+    book_time: jsonFormData['select_date'],
+    book_am_pm: jsonFormData['book_am_pm'],
+    order_id: $('#order_id').text(),
+    account_id: GetCookie('accountid'),
+    detail: decodeURIComponent(GetCookie('formData'))
+  };
+  obj = {
+    contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+    bc: function(rs) {
+      var cookies;
+      enterNext(d);
+      cookies = ['item', 'select_date'];
+      removeCookies(cookies);
+    }
+  };
+  ajax('POST', '/CGI-BIN/submitBookitem.pl', postData, obj);
 };
 
 _initSubmit = function(date) {
@@ -240,6 +264,9 @@ bindBookItem = function() {
   }, enterLastStep);
   $('#step5 #book-confirm-reject').on('click', {
     step: 4
+  }, enterNext);
+  $('#step6 .order-button.payed').on('click', {
+    step: 3
   }, enterNext);
   $('a.steperror_return').on('click', {
     step: 1
