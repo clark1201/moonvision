@@ -95,6 +95,7 @@
      a.order-button{height:64px;display:inline-block;top:-1px;position:absolute;right:0;width:124px;text-align:center;line-height:64px;color:#fff;font-size:14px;}
      a.unpay{background:#f22828;}
      a.payed{background:#31aea8;}
+.non-order{display:none;}
 
 .book-order-agree-container{margin-top:30px;}
   .book-order-agree-container a{display:inline-block;text-align:center;}

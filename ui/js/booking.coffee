@@ -67,6 +67,41 @@ showAllBookItem = ()->
   else
     obj = 
       bc : (d)->
+        html = ''
+        $('#orderCount').text d?.length or 0
+        if d and d.length > 0
+          $('.non-order').hide()
+          $('.has-order').show()
+          for order_item, i in d
+            html += "
+              <div class='book-order-content-container'>
+                <div class='book-order-info-item'>
+                  <label class='book-order-info-item-label'>定单号：</label>
+                  <label class='book-order-info-item-label'>#{order_item}</label>
+                </div>
+                <div class='book-order-info-item'>
+                  <label class='book-order-info-item-label'>宝宝名字：</label>
+                  <label class='book-order-info-item-label'>上海市杨浦区大学路292号702</label>
+                </div>
+                <div class='book-order-info-item'>
+                  <label class='book-order-info-item-label'>拍摄时间：</label>
+                  <label class='book-order-info-item-label'>上海市杨浦区大学路292号702</label>
+                </div>
+                <div class='book-order-info-item'>
+                  <label class='book-order-info-item-label'>拍摄地址：</label>
+                  <label class='book-order-info-item-label'>上海市杨浦区大学路292号702</label>
+                </div>
+                <div class='book-order-status-item'>
+                  <label class='book-order-info-item-label'>当前状态：</label>
+                  <label class='book-order-info-item-label'>上海市杨浦区大学路292号702</label>
+                  <a href='javascript:void(0)' class='order-button unpay'>继续付款</a>
+                </div>
+              </div>
+            "
+          $('.has-order.book-item-container').html html
+        else
+          $('.non-order').show()
+          $('.has-order').hide()
         return
     ajax 'GET', '/CGI-BIN/getAllBookItem.pl', "accountid=#{accountid}&account=#{account}", obj
   return
@@ -137,7 +172,7 @@ enterLastStep = (d)->
     book_am_pm : jsonFormData['book_am_pm']
     order_id : $('#order_id').text()
     account_id : GetCookie 'accountid'
-    detail : decodeURIComponent(GetCookie('formData'))
+    detail : decodeURIComponent(GetCookie('formData').replace(/"/g,'\\"'))
   # postData = JSON.stringify postData
   obj = 
     contentType : 'application/x-www-form-urlencoded;charset=utf-8'
