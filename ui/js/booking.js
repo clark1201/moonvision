@@ -80,7 +80,7 @@ showAllBookItem = function() {
   } else {
     obj = {
       bc: function(d) {
-        var html, i, order_item, _i, _len;
+        var html, i, order_item, order_itemObj, _i, _len;
         html = '';
         $('#orderCount').text((d != null ? d.length : void 0) || 0);
         if (d && d.length > 0) {
@@ -88,7 +88,8 @@ showAllBookItem = function() {
           $('.has-order').show();
           for (i = _i = 0, _len = d.length; _i < _len; i = ++_i) {
             order_item = d[i];
-            html += "<div class='book-order-content-container'> <div class='book-order-info-item'> <label class='book-order-info-item-label'>定单号：</label> <label class='book-order-info-item-label'>" + order_item + "</label> </div> <div class='book-order-info-item'> <label class='book-order-info-item-label'>宝宝名字：</label> <label class='book-order-info-item-label'>上海市杨浦区大学路292号702</label> </div> <div class='book-order-info-item'> <label class='book-order-info-item-label'>拍摄时间：</label> <label class='book-order-info-item-label'>上海市杨浦区大学路292号702</label> </div> <div class='book-order-info-item'> <label class='book-order-info-item-label'>拍摄地址：</label> <label class='book-order-info-item-label'>上海市杨浦区大学路292号702</label> </div> <div class='book-order-status-item'> <label class='book-order-info-item-label'>当前状态：</label> <label class='book-order-info-item-label'>上海市杨浦区大学路292号702</label> <a href='javascript:void(0)' class='order-button unpay'>继续付款</a> </div> </div>";
+            order_itemObj = JSON.parse(order_item.detail);
+            html += "<div class='book-order-content-container'> <div class='book-order-info-item'> <label class='book-order-info-item-label'>定单号：</label> <label class='book-order-info-item-label'>" + order_item.order_id + "</label> </div> <div class='book-order-info-item'> <label class='book-order-info-item-label'>宝宝名字：</label> <label class='book-order-info-item-label'>" + order_itemObj.name + "</label> </div> <div class='book-order-info-item'> <label class='book-order-info-item-label'>拍摄时间：</label> <label class='book-order-info-item-label'>" + order_item.book_time + " " + enums.bookingTime[+order_item.book_am_pm] + "</label> </div> <div class='book-order-info-item'> <label class='book-order-info-item-label'>拍摄地址：</label> <label class='book-order-info-item-label'>" + enums.address + "</label> </div> <div class='book-order-status-item'> <label class='book-order-info-item-label'>当前状态：</label> <label class='book-order-info-item-label " + (+order_item.order_status === 0 ? 'unpay-text' : 'payed-text') + "'>" + enums.orderStatus[+order_item.order_status] + "</label> <a href='javascript:void(0)' class='order-button " + (+order_item.order_status === 0 ? 'unpay' : 'payed') + "'>" + enums.orderStatusBtnText[+order_item.order_status] + "</a> </div> </div>";
           }
           $('.has-order.book-item-container').html(html);
         } else {
@@ -102,18 +103,18 @@ showAllBookItem = function() {
 };
 
 _showBookingDate = function(d) {
-  var i, _i, _len;
-  for (_i = 0, _len = d.length; _i < _len; _i++) {
-    i = d[_i];
-    if (d.book_time) {
-      if (d.book_am_pm === 1) {
-        $("li[data-date=" + d.book_time + "]");
-        console.log(1);
+  var i, item, _i, _len;
+  for (i = _i = 0, _len = d.length; _i < _len; i = ++_i) {
+    item = d[i];
+    if (item.book_time) {
+      if (+item.book_am_pm === 1) {
+        $("a[data-date=" + item.book_time + "]").addClass('am-booking');
       } else {
-        console.log(2);
+        $("a[data-date=" + item.book_time + "]").addClass('pm-booking');
       }
     }
   }
+  $("a.am-booking.pm-booking").removeClass('am-booking').removeClass('pm-booking').addClass('all-booking').removeClass('book-select-date-item').addClass('book-select-date-item-disabled');
 };
 
 _displayCalendar = function(date) {
@@ -195,21 +196,12 @@ _initSubmit = function(date) {
     bc: function(d) {
       var step;
       step = 4;
-      console.log(d);
-      if (d.length >= 2) {
-        return;
-      } else if (d.length === 1) {
-        if (d[0].book_am_pm === 1) {
-          console.log(1);
-        } else {
-          console.log(2);
-        }
-        $('.step').hide();
-        $("#step" + step).show();
-      } else {
-        $('.step').hide();
-        $("#step" + step).show();
+      if (d.length > 0) {
+        $('.book-detail-info-item-enter .space').hide();
+        $(".book-detail-info-item-enter .select-frame[data-val=" + d[0].book_am_pm + "]").parent().hide();
       }
+      $('.step').hide();
+      $("#step" + step).show();
     }
   };
   ajax('GET', '/CGI-BIN/getBookingByDate.pl', "book_time=" + date, obj);

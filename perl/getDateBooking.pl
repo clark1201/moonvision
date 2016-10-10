@@ -4,7 +4,7 @@ my $cgi = CGI->new;
 my $dbh = DBI->connect("DBI:mysql:database=hdm174585245_db;host=hdm174585245.my3w.com;port=3306",  
   "hdm174585245", "hmw223410") or die $DBI::errstr;
 print "Content-type: text/plain\n\n";
-my $statement = qq{select id, book_time, book_am_pm, detail, account_id, create_time from booking};
+my $statement = qq{select id, book_time, book_am_pm, detail, account_id, create_time from booking where book_time>now()};
 my $sth = $dbh->prepare($statement) or die $dbh->errstr;
 $sth->execute() or die $sth->errstr;
 my $str = "[";

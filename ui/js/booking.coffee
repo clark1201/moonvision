@@ -73,28 +73,29 @@ showAllBookItem = ()->
           $('.non-order').hide()
           $('.has-order').show()
           for order_item, i in d
+            order_itemObj = JSON.parse order_item.detail
             html += "
               <div class='book-order-content-container'>
                 <div class='book-order-info-item'>
                   <label class='book-order-info-item-label'>定单号：</label>
-                  <label class='book-order-info-item-label'>#{order_item}</label>
+                  <label class='book-order-info-item-label'>#{order_item.order_id}</label>
                 </div>
                 <div class='book-order-info-item'>
                   <label class='book-order-info-item-label'>宝宝名字：</label>
-                  <label class='book-order-info-item-label'>上海市杨浦区大学路292号702</label>
+                  <label class='book-order-info-item-label'>#{order_itemObj.name}</label>
                 </div>
                 <div class='book-order-info-item'>
                   <label class='book-order-info-item-label'>拍摄时间：</label>
-                  <label class='book-order-info-item-label'>上海市杨浦区大学路292号702</label>
+                  <label class='book-order-info-item-label'>#{order_item.book_time} #{enums.bookingTime[+order_item.book_am_pm]}</label>
                 </div>
                 <div class='book-order-info-item'>
                   <label class='book-order-info-item-label'>拍摄地址：</label>
-                  <label class='book-order-info-item-label'>上海市杨浦区大学路292号702</label>
+                  <label class='book-order-info-item-label'>#{enums.address}</label>
                 </div>
                 <div class='book-order-status-item'>
                   <label class='book-order-info-item-label'>当前状态：</label>
-                  <label class='book-order-info-item-label'>上海市杨浦区大学路292号702</label>
-                  <a href='javascript:void(0)' class='order-button unpay'>继续付款</a>
+                  <label class='book-order-info-item-label #{if +order_item.order_status is 0 then 'unpay-text' else 'payed-text'}'>#{enums.orderStatus[+order_item.order_status]}</label>
+                  <a href='javascript:void(0)' class='order-button #{if +order_item.order_status is 0 then 'unpay' else 'payed'}'>#{enums.orderStatusBtnText[+order_item.order_status]}</a>
                 </div>
               </div>
             "
@@ -108,15 +109,13 @@ showAllBookItem = ()->
 
 _showBookingDate = (d)->
   # 已经预订过的日期，判断上午下午来选择样式
-  for i in d
-    if d.book_time
-      if d.book_am_pm is 1
-        $("li[data-date=#{d.book_time}]")
-        # $('li').addClass 'am-booking'
-        console.log 1
+  for item, i in d
+    if item.book_time
+      if +item.book_am_pm is 1
+        $("a[data-date=#{item.book_time}]").addClass 'am-booking'
       else
-        # $('li').addClass 'pm-booking'
-        console.log 2
+        $("a[data-date=#{item.book_time}]").addClass 'pm-booking'
+  $("a.am-booking.pm-booking").removeClass('am-booking').removeClass('pm-booking').addClass('all-booking').removeClass('book-select-date-item').addClass('book-select-date-item-disabled')
   return
 # // 展示日历界面
 _displayCalendar = (date)->
@@ -188,19 +187,16 @@ _initSubmit = (date)->
   obj = 
     bc : (d)->
       step = 4
-      console.log d
-      if d.length >= 2
-        return
-      else if d.length is 1
-        if d[0].book_am_pm is 1
-          console.log 1
-        else
-          console.log 2
-        $('.step').hide()
-        $("#step#{step}").show()
-      else 
-        $('.step').hide()
-        $("#step#{step}").show()
+      # console.log d
+      if d.length > 0
+        $('.book-detail-info-item-enter .space').hide()
+        # if d[0].book_am_pm is 1
+        $(".book-detail-info-item-enter .select-frame[data-val=#{d[0].book_am_pm}]").parent().hide()
+        #   console.log 1
+        # else
+        #   console.log 2
+      $('.step').hide()
+      $("#step#{step}").show()
       return
   ajax 'GET', '/CGI-BIN/getBookingByDate.pl', "book_time=#{date}", obj
   return
