@@ -187,14 +187,11 @@ _initSubmit = (date)->
   obj = 
     bc : (d)->
       step = 4
-      # console.log d
+      $('.book-detail-info-item-enter .spacing.select_am_pm').show()
+      $(".book-detail-info-item-enter .select-frame[data-key='book_am_pm']").parent().show()
       if d.length > 0
-        $('.book-detail-info-item-enter .space').hide()
-        # if d[0].book_am_pm is 1
-        $(".book-detail-info-item-enter .select-frame[data-val=#{d[0].book_am_pm}]").parent().hide()
-        #   console.log 1
-        # else
-        #   console.log 2
+        $('.book-detail-info-item-enter .spacing.select_am_pm').hide()
+        $(".book-detail-info-item-enter .select-frame[data-key='book_am_pm'][data-val=#{d[0].book_am_pm}]").parent().hide()
       $('.step').hide()
       $("#step#{step}").show()
       return

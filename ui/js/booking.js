@@ -196,9 +196,11 @@ _initSubmit = function(date) {
     bc: function(d) {
       var step;
       step = 4;
+      $('.book-detail-info-item-enter .spacing.select_am_pm').show();
+      $(".book-detail-info-item-enter .select-frame[data-key='book_am_pm']").parent().show();
       if (d.length > 0) {
-        $('.book-detail-info-item-enter .space').hide();
-        $(".book-detail-info-item-enter .select-frame[data-val=" + d[0].book_am_pm + "]").parent().hide();
+        $('.book-detail-info-item-enter .spacing.select_am_pm').hide();
+        $(".book-detail-info-item-enter .select-frame[data-key='book_am_pm'][data-val=" + d[0].book_am_pm + "]").parent().hide();
       }
       $('.step').hide();
       $("#step" + step).show();
