@@ -37,6 +37,10 @@ showStep = function(step, item, date, infoObj) {
       $('#selectedDate').text(date);
     }
     $('.book-term-content-container-padding').hide();
+    if (+step === 2) {
+      $("." + item).show();
+      $('.book-term-content-container').scrollTop(0);
+    }
     if (+step === 3) {
       _displayCalendar(date);
     }
@@ -45,10 +49,6 @@ showStep = function(step, item, date, infoObj) {
     } else {
       $('.step').hide();
       $("#step" + step).show();
-    }
-    if (+step === 2) {
-      $("." + item).show();
-      $('.book-term-content-container').scrollTop(0);
     }
     if (+step === 5) {
       infoObj = JSON.parse(GetCookie('formData'));
@@ -80,13 +80,13 @@ showAllBookItem = function() {
   } else {
     obj = {
       bc: function(d) {
-        var html, i, order_item, order_itemObj, _i, _len;
+        var html, i, order_item, order_itemObj, _i;
         html = '';
         $('#orderCount').text((d != null ? d.length : void 0) || 0);
         if (d && d.length > 0) {
           $('.non-order').hide();
           $('.has-order').show();
-          for (i = _i = 0, _len = d.length; _i < _len; i = ++_i) {
+          for (i = _i = d.length - 1; _i >= 0; i = _i += -1) {
             order_item = d[i];
             order_itemObj = JSON.parse(order_item.detail);
             html += "<div class='book-order-content-container'> <div class='book-order-info-item'> <label class='book-order-info-item-label'>定单号：</label> <label class='book-order-info-item-label'>" + order_item.order_id + "</label> </div> <div class='book-order-info-item'> <label class='book-order-info-item-label'>宝宝名字：</label> <label class='book-order-info-item-label'>" + order_itemObj.name + "</label> </div> <div class='book-order-info-item'> <label class='book-order-info-item-label'>拍摄时间：</label> <label class='book-order-info-item-label'>" + order_item.book_time + " " + enums.bookingTime[+order_item.book_am_pm] + "</label> </div> <div class='book-order-info-item'> <label class='book-order-info-item-label'>拍摄地址：</label> <label class='book-order-info-item-label'>" + enums.address + "</label> </div> <div class='book-order-status-item'> <label class='book-order-info-item-label'>当前状态：</label> <label class='book-order-info-item-label " + (+order_item.order_status === 0 ? 'unpay-text' : 'payed-text') + "'>" + enums.orderStatus[+order_item.order_status] + "</label> <a href='javascript:void(0)' class='order-button " + (+order_item.order_status === 0 ? 'unpay' : 'payed') + "'>" + enums.orderStatusBtnText[+order_item.order_status] + "</a> </div> </div>";
@@ -162,6 +162,9 @@ _displayCalendar = function(date) {
 
 enterNext = function(d) {
   var infoObj, item, step;
+  if ($(this).hasClass('book-select-date-item-disabled')) {
+    return;
+  }
   step = +d.data.step;
   infoObj = d.data.infoObj || null;
   item = $(this).data('item') || GetCookie('item') || 'kids';

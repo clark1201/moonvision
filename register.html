@@ -20,20 +20,24 @@
       <div class="register-title">注册帐号</div>
       <div class="register-input-container">
         <div>
-          <input type="text" class="form-control" placeholder="请输入手机号码" />
+          <input type="text" id="tel" class="form-control" placeholder="请输入手机号码" />
         </div>
         <div>
-          <input type="password" class="form-control" placeholder="请输入密码"/>  
+          <input type="password" id="pwd" class="form-control" placeholder="请输入密码"/>  
         </div>
         <div>
-          <input type="password" class="form-control" placeholder="请再输入一遍密码" />
+          <input type="password" id="repwd" class="form-control" placeholder="请再输入一遍密码" />
+        </div>
+        <div>
+          <input type="text" id="captcha" class="form-control input-captcha dib" style="width:50%" placeholder="请输入验证码" />
+          <label id="lb_captcha" class="lb-captcha text-center dib"></label>
         </div>
         <div class="button-container">
-          <button class="btn btn-blue">注册</button>
+          <button id="btn-register" class="btn btn-blue">注册</button>
         </div>
         <div class="link-container">
           <div class="link-item">
-            <a class="link-item-a" href="/login.html" target="_self">登录</a>
+            <a class="link-item-a" href="/login.html" target="_self">已有帐号，登录</a>
           </div>
         </div>
       </div>

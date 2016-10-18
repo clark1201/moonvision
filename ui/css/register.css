@@ -6,3 +6,9 @@
   .register-input-container div.link-container{margin-top:17px;}
     .link-item{margin-bottom:10px;}
       a.link-item-a{color:#fff;font-size:12px;}
+  .input-captcha{width:48%;}
+  .lb-captcha{width:48%;background-color:#fff;height:35px;line-height:35px;letter-spacing:16px;}
+.captcha-container{width:100%;}
+.captcha-container .captcha-text{width:50%;display:inline-block;}
+.captcha-container .captcha-checkcode{display:inline-block;width:48%;background-color:#fff;height:33px;line-height:33px;text-align:center;letter-spacing:12px;}
+.err-info{color:#ff0000;display:inline-block;}

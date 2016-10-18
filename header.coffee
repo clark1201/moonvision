@@ -20,7 +20,8 @@ header = '
           <ul class="dropdown-menu bookLabel-container" aria-labelledby="bookLabel">
             <li><a id="toBook">预定</a></li>
             <li><a id="myOrder">我的定单</a></li>
-            <li><a href="register.html">注册</a></li>
+            <!--li><a href="register.html">注册</a></li-->
+            <li><a href="login.html">登录</a></li>
             <!--li><a href="other.html">其他</a></li-->
           </ul>
         </span>

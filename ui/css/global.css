@@ -15,6 +15,7 @@ a:hover,a:active{color:#777;text-decoration:none;}
 .fix{zoom:1;}
 .fixheight{height:150px;}
 .dnone{display:none;}
+.dib{display:inline-block;}
 .paddingBottom50{padding-bottom:50px;}
 .btn{width:100%;}
 .btn-blue{color:#fff!important;background-color:#009395;}

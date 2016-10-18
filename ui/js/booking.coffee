@@ -28,6 +28,9 @@ showStep = (step, item, date, infoObj)->
       SetCookie 'select_date', date, 3600
       $('#selectedDate').text date
     $('.book-term-content-container-padding').hide()
+    if +step is 2
+      $(".#{item}").show()
+      $('.book-term-content-container').scrollTop 0
     if +step is 3
       _displayCalendar date
     if +step is 4
@@ -35,9 +38,6 @@ showStep = (step, item, date, infoObj)->
     else
       $('.step').hide()
       $("#step#{step}").show()
-    if +step is 2
-      $(".#{item}").show()
-      $('.book-term-content-container').scrollTop 0
     if +step is 5
       infoObj = JSON.parse GetCookie('formData')
       # if GetCookie 'formData'
@@ -72,7 +72,7 @@ showAllBookItem = ()->
         if d and d.length > 0
           $('.non-order').hide()
           $('.has-order').show()
-          for order_item, i in d
+          for order_item, i in d by -1
             order_itemObj = JSON.parse order_item.detail
             html += "
               <div class='book-order-content-container'>
@@ -122,8 +122,6 @@ _displayCalendar = (date)->
   obj = 
     bc : (d)->
       first_date = new Date()
-      # 暂时注掉，把已选日期作为起始日期
-      # if date then first_date = new Date(date)
       last_date = first_date.clone().addMonths(5)
       dateDuration = first_date.format('{yyyy}.{M}') + ' — ' + last_date.format('{yyyy}.{M}')
       $('#book-select-date-text').html dateDuration
@@ -151,7 +149,6 @@ _displayCalendar = (date)->
       $('#displayCalenderContainer').html html
       # $(html).find('.book-select-date-item').on('click', {step:4}, enterNext);
       $('#step3 .book-select-date-item').on 'click', {step:4}, enterNext
-
       _showBookingDate d
       return
   ajax 'GET', '/CGI-BIN/getDateBooking.pl', '', obj
@@ -159,6 +156,8 @@ _displayCalendar = (date)->
 
 # // 从 cookie 中获取当前的进度(step)和所选的项目，按照进度和项目的不同，展示不同的页面。
 enterNext = (d)->
+  if $(@).hasClass 'book-select-date-item-disabled'
+    return
   step = +d.data.step
   infoObj = d.data.infoObj or null
   item = $(@).data('item') or GetCookie('item') or 'kids'

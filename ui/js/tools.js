@@ -58,7 +58,6 @@ ajax = function(_type, _url, _data, obj) {
     contentType: (obj != null ? obj.contentType : void 0) || 'text/plain',
     success: function(d) {
       var json_d;
-      console.log(d);
       json_d = JSON.parse(d);
       return obj.bc(json_d);
     },
