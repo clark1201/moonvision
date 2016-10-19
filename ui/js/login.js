@@ -23,16 +23,20 @@ loginClick = function() {
   txtTel = $('#txtTel').val();
   txtPwd = $('#txtPwd').val();
   txtCaptcha = $('#txtCaptcha').val();
-  postData = {
-    tel: txtTel,
-    pwd: txtPwd,
-    captcha: txtCaptcha
-  };
+  if (!(txtTel && txtPwd && txtCaptcha)) {
+    $('#err-info').text('信息填写完整');
+    return;
+  }
   if (txtCaptcha !== _check) {
     $('#err-info').text('验证码不正确');
     _initCaptcha(4);
     return;
   }
+  postData = {
+    tel: txtTel,
+    pwd: txtPwd,
+    captcha: txtCaptcha
+  };
   obj = {
     contentType: 'application/x-www-form-urlencoded;charset=utf-8',
     bc: function(rs) {
@@ -45,7 +49,6 @@ loginClick = function() {
         location.href = "booking.html";
       } else {
         $('#err-info').text('手机号码或密码错误');
-        $('#txtTel').val('');
         $('#txtPwd').val('');
         $('#txtCaptcha').val('');
         _initCaptcha(4);
