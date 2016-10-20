@@ -22,9 +22,9 @@ header = '
           </span>
           <ul class="dropdown-menu bookLabel-container" aria-labelledby="bookLabel">
             <li><a id="toBook">预定</a></li>
-            <li><a id="myOrder">我的定单</a></li>
+            <li id="myOrderList" style="display:none;"><a id="myOrder">我的定单</a></li>
             <!--li><a href="register.html">注册</a></li-->
-            <li><a href="login.html">登录</a></li>
+            <li id="loginContainer"><a href="login.html">登录</a></li>
             <!--li><a href="other.html">其他</a></li-->
             <li id="logoutContainer" style="display:none;"><a id="logout">登出</a></li>
           </ul>
@@ -52,5 +52,9 @@ $('#logout').on 'click', ()->
   return
 if GetCookie('account')
   $('#logoutContainer').show()
+  $('#myOrderList').show()
+  $('#loginContainer').hide()
 else
   $('#logoutContainer').hide()
+  $('#myOrderList').hide()
+  $('#loginContainer').show()
