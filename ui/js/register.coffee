@@ -40,7 +40,9 @@ regClick = ()->
       if not rs.err
         cookies = ['item', 'select_date', 'step']
         removeCookies cookies
-        location.href = "login.html"
+        # location.href = "login.html"
+        $('#regStep1').hide()
+        $('#regStep2').show()
       else
         $('#err-info').text '该手机号已被注册，请使用其他手机号注册'
         $('#txtPwd').val ''

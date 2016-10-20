@@ -8,6 +8,8 @@
       a.link-item-a{color:#fff;font-size:12px;}
   .input-captcha{width:48%;}
   .lb-captcha{width:48%;background-color:#fff;height:35px;line-height:35px;letter-spacing:16px;}
+  .register-success,a.register-success{font-size:16px;color:#fff;}
+  a.register-success{text-decoration:underline;}
 .captcha-container{width:100%;}
 .captcha-container .captcha-text{width:50%;display:inline-block;}
 .captcha-container .captcha-checkcode{display:inline-block;width:48%;background-color:#fff;height:33px;line-height:33px;text-align:center;letter-spacing:12px;}

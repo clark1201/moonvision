@@ -16,7 +16,7 @@
 <body>
   <div>
     <script id="header" type="text/javascript" src="header.js?v=6"></script>
-    <div class="registerContainer">
+    <div id="regStep1" class="registerContainer">
       <div class="register-title">注册帐号</div>
       <div class="register-input-container">
         <div>
@@ -46,6 +46,15 @@
           <div class="link-item">
             <a class="link-item-a" href="/login.html" target="_self">已有帐号，登录</a>
           </div>
+        </div>
+      </div>
+    </div>
+    <div id="regStep2" class="registerContainer" style="display: none;">
+      <div class="register-title">注册成功</div>
+      <div class="register-input-container">
+        <div class="register-success">
+          恭喜，您已注册成功，去
+          <a href="login.html" class="register-success">登录</a>
         </div>
       </div>
     </div>
