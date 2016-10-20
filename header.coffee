@@ -3,6 +3,9 @@ currentTabArr = ['current','','','','','']
 if v
   for i in [0...currentTabArr.length]
     currentTabArr[i] = if i is (+v - 1) then 'current' else ''
+bookLabelText = '预定'
+if GetCookie('account')
+  bookLabelText = decodeURIComponent GetCookie('account')
 header = '
   <link rel="stylesheet" type="text/css" href="ui/css/header.css" />
   <div class="step2_direction">
@@ -15,7 +18,7 @@ header = '
         <a class="step2_direction_tab_aus '+currentTabArr[3]+'" href="/index.html?ui=4" target="_self" onfocus="this.blur();">About Us</a>
         <a class="step2_direction_tab_cus '+currentTabArr[4]+'" href="/index.html?ui=5" target="_self" onfocus="this.blur();">Contact Us</a>
         <span class="step2_direction_tab_book dropdown '+currentTabArr[5]+'" style="cursor: pointer;display:inline-block;" onfocus="this.blur();">
-          <span id="bookLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="bookLabel">预定（敬请期待）<span class="caret"></span>
+          <span id="bookLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="bookLabel">'+bookLabelText+'<span class="caret"></span>
           </span>
           <ul class="dropdown-menu bookLabel-container" aria-labelledby="bookLabel">
             <li><a id="toBook">预定</a></li>
@@ -23,6 +26,7 @@ header = '
             <!--li><a href="register.html">注册</a></li-->
             <li><a href="login.html">登录</a></li>
             <!--li><a href="other.html">其他</a></li-->
+            <li id="logoutContainer" style="display:none;"><a id="logout">登出</a></li>
           </ul>
         </span>
       </div>
@@ -41,3 +45,12 @@ $('#myOrder').on 'click', ()->
   SetCookie 'step', 6
   location.href = "booking.html"
   return
+$('#logout').on 'click', ()->
+  cookies = ['item', 'select_date', 'step', 'account', 'accountid']
+  removeCookies cookies
+  location.href = "index.html"
+  return
+if GetCookie('account')
+  $('#logoutContainer').show()
+else
+  $('#logoutContainer').hide()

@@ -27,7 +27,7 @@ loginClick = ()->
     pwd: txtPwd
     captcha: txtCaptcha
   obj = 
-    contentType : 'application/x-www-form-urlencoded;charset=utf-8'
+    contentType : 'application/x-www-form-urlencoded;charset=utf-8;'
     bc : (rs)->
       # 返回 json 格式
       if rs.id and rs.username

@@ -38,7 +38,7 @@ loginClick = function() {
     captcha: txtCaptcha
   };
   obj = {
-    contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+    contentType: 'application/x-www-form-urlencoded;charset=utf-8;',
     bc: function(rs) {
       var cookies;
       if (rs.id && rs.username) {

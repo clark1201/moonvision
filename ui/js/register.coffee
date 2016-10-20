@@ -34,7 +34,7 @@ regClick = ()->
     address: txtAddress
     captcha: txtCaptcha
   obj = 
-    contentType : 'application/x-www-form-urlencoded'
+    contentType : 'application/x-www-form-urlencoded;charset=utf-8;'
     bc : (rs)->
       # 返回 json 格式
       if not rs.err
