@@ -3,6 +3,8 @@ var bindBookItem, enterLastStep, enterNext, getNowDate, initItem, selectFrameCli
 
 $("body").css("background-color", "#86cbc8");
 
+$('#modal').load("template/confirmModal.html");
+
 selectFrameClick = function() {
   if ($(this).parent().find('.select-frame').length > 1) {
     $(this).parent().find('.select-frame').removeClass('select-frame-selected');
@@ -28,10 +30,21 @@ initItem = function() {
 };
 
 showStep = function(step, item, date, infoObj) {
-  var order_id, str_select_date;
+  var order_id, str_select_date, _checkLogin;
+  _checkLogin = function() {
+    var account, accountid;
+    account = GetCookie('account');
+    accountid = GetCookie('accountid');
+    if (!(account && accountid)) {
+      location.href = '/login.html';
+    }
+  };
   SetCookie('step', step, 3600);
   SetCookie('item', item, 3600);
   if ((+step !== 2) || (+step === 2 && item === 'kids')) {
+    if (+step !== 1) {
+      _checkLogin();
+    }
     if (date) {
       SetCookie('select_date', date, 3600);
       $('#selectedDate').text(date);
@@ -58,6 +71,7 @@ showStep = function(step, item, date, infoObj) {
       $('#order_id').text("" + order_id + infoObj['book_am_pm']);
     }
     if (+step === 6) {
+      _checkLogin();
       showAllBookItem();
     }
   } else if (+step === 2 && item === 'business') {
@@ -172,14 +186,26 @@ enterNext = function(d) {
 };
 
 enterLastStep = function(d) {
-  var jsonFormData, obj, postData;
+  var item, jsonFormData, obj, postData, type;
   jsonFormData = JSON.parse(decodeURIComponent(GetCookie('formData')));
+  type = 1;
+  item = GetCookie('item');
+  if (item === 'kids') {
+    type = 1;
+  } else if (item === 'wedding') {
+    type = 2;
+  } else if (item === 'marry') {
+    type = 3;
+  } else if (item === 'business') {
+    type = 4;
+  }
   postData = {
     book_time: jsonFormData['select_date'],
     book_am_pm: jsonFormData['book_am_pm'],
     order_id: $('#order_id').text(),
     account_id: GetCookie('accountid'),
-    detail: decodeURIComponent(GetCookie('formData').replace(/"/g, '\\"'))
+    detail: decodeURIComponent(GetCookie('formData').replace(/"/g, '\\"')),
+    type: type
   };
   obj = {
     contentType: 'application/x-www-form-urlencoded;charset=utf-8',

@@ -14,7 +14,8 @@ enums = (function() {
     orderStatus: {
       0: '未支付定金',
       1: '支付完成，等待拍摄',
-      2: '拍摄完成'
+      2: '拍摄完成',
+      3: '已拒绝'
     },
     orderStatusBtnText: {
       0: '继续付款',

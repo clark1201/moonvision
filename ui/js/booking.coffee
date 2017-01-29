@@ -1,4 +1,5 @@
 $("body").css("background-color", "#86cbc8")
+$('#modal').load "template/confirmModal.html"
 selectFrameClick = ()->
   if $(@).parent().find('.select-frame').length > 1
     $(@).parent().find('.select-frame').removeClass 'select-frame-selected'
@@ -21,9 +22,17 @@ initItem = ()->
 
 # // 先把进度和项目记录 cookie，然后按照进度和项目的不同展示页面。
 showStep = (step, item, date, infoObj)->
+  _checkLogin = ()->
+    account = GetCookie('account')
+    accountid = GetCookie('accountid')
+    if not (account and accountid)
+      location.href = '/login.html'
+    return
   SetCookie 'step', step, 3600
   SetCookie 'item', item, 3600
   if (+step isnt 2) or (+step is 2 and item is 'kids')
+    if(+step isnt 1)
+      _checkLogin()
     if date
       SetCookie 'select_date', date, 3600
       $('#selectedDate').text date
@@ -48,6 +57,7 @@ showStep = (step, item, date, infoObj)->
       $('#order_id').text "#{order_id}#{infoObj['book_am_pm']}"
     if +step is 6
       # 展示订单列表
+      _checkLogin()
       showAllBookItem()
   else if (+step is 2 and item is 'business')
     removeCookie 'step'
@@ -165,12 +175,23 @@ enterNext = (d)->
   return
 enterLastStep = (d)->
   jsonFormData = JSON.parse decodeURIComponent(GetCookie('formData'))
+  type = 1
+  item = GetCookie('item')
+  if item is 'kids'
+    type = 1
+  else if item is 'wedding'
+    type = 2
+  else if item is 'marry'
+    type = 3
+  else if item is 'business'
+    type = 4
   postData = 
     book_time : jsonFormData['select_date']
     book_am_pm : jsonFormData['book_am_pm']
     order_id : $('#order_id').text()
     account_id : GetCookie 'accountid'
     detail : decodeURIComponent(GetCookie('formData').replace(/"/g,'\\"'))
+    type : type
   # postData = JSON.stringify postData
   obj = 
     contentType : 'application/x-www-form-urlencoded;charset=utf-8'

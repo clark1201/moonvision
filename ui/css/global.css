@@ -9,6 +9,7 @@ img{border:0}
 input::-moz-focus-inner{border:0;padding:0;margin:0}
 a,a:link,a:visited{font:12px/20px "Microsoft YaHei",Arial,宋体;color:#808080;text-decoration:none;cursor:pointer;}
 a:hover,a:active{color:#777;text-decoration:none;}
+#modal{position:relative;}
 .StyleCursorPointer{cursor:pointer}
 /*.fix{clear:both}*/
 .fix:after{content: " ";display:block;clear:both;height:0;}
