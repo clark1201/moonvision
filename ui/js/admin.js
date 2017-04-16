@@ -67,7 +67,7 @@ getUndoList = function() {
 };
 
 _showList = function(d) {
-  var html, i, order_item, order_itemObj, str_order_item, _i;
+  var html, i, order_item, order_itemObj, order_status_html, str_order_item, _i;
   html = '';
   $('#orderCount').text((d != null ? d.length : void 0) || 0);
   if (d && d.length > 0) {
@@ -78,7 +78,17 @@ _showList = function(d) {
       order_item = d[i];
       order_itemObj = JSON.parse(order_item.detail);
       str_order_item = JSON.stringify(order_item);
-      html += "<tr> <td>" + order_item.order_id + "</td> <td>" + order_item.book_time + " " + enums.bookingTime[+order_item.book_am_pm] + "</td> <td>" + enums.packageName[order_itemObj.book_package] + "</td> <td>" + enums.orderType[order_item.type] + "</td> <td> <p>姓名：" + order_item.username + "</p> <p>电话：" + order_item.tel + "</p> <p>地址：" + order_item.address + "</p> </td> <td>" + enums.address + "</td> <td><a class='viewDetail' href='javascript:void(0)' onclick='showDetail(" + str_order_item + ")'>点击看详细</a></td> <td>" + enums.orderStatus[order_item.order_status] + "</td> <td> <p><a class='text-primary' href='javascript:void(0)' onclick='setPay(" + order_item.order_id + ")'>已付款</a></p> <p><a class='text-success' href='javascript:void(0)' onclick='setPicture(" + order_item.order_id + ")'>已拍摄</a></p> <p><a class='text-danger' href='javascript:void(0)' onclick='setReject(" + order_item.order_id + ")'>拒绝</a></p> </td> </tr>";
+      order_status_html = "";
+      if (+order_item.order_status === 1) {
+        order_status_html = "<p><a class='text-success' href='javascript:void(0)' onclick='setPicture(" + order_item.order_id + ")'>已拍摄</a></p>";
+      } else if (+order_item.order_status === 2) {
+        order_status_html = "-";
+      } else if (+order_item.order_status === 3) {
+        order_status_html = "-";
+      } else {
+        order_status_html = "<p><a class='text-primary' href='javascript:void(0)' onclick='setPay(" + order_item.order_id + ")'>已付款</a></p> <p><a class='text-success' href='javascript:void(0)' onclick='setPicture(" + order_item.order_id + ")'>已拍摄</a></p> <p><a class='text-danger' href='javascript:void(0)' onclick='setReject(" + order_item.order_id + ")'>拒绝</a></p>";
+      }
+      html += "<tr> <td>" + order_item.order_id + "</td> <td>" + order_item.book_time + " " + enums.bookingTime[+order_item.book_am_pm] + "</td> <td>" + enums.packageName[order_itemObj.book_package] + "</td> <td>" + enums.orderType[order_item.type] + "</td> <td> <p>姓名：" + order_item.username + "</p> <p>电话：" + order_item.tel + "</p> <p>地址：" + order_item.address + "</p> </td> <td>" + enums.address + "</td> <td><a class='viewDetail' href='javascript:void(0)' onclick='showDetail(" + str_order_item + ")'>点击看详细</a></td> <td class='" + enums.orderStatusColor[order_item.order_status] + "'>" + enums.orderStatus[order_item.order_status] + "</td> <td> " + order_status_html + " </td> </tr>";
     }
     $('#undoList_content').html(html);
   } else {

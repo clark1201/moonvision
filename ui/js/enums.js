@@ -28,6 +28,12 @@ enums = (function() {
       2: '婚纱',
       3: '结婚登记',
       4: '商业'
+    },
+    orderStatusColor: {
+      0: 'text-primary',
+      1: 'text-info',
+      2: 'text-success',
+      3: 'text-danger'
     }
   };
 })();

@@ -82,7 +82,6 @@ _showList = (d)->
     for order_item, i in d by -1
       order_itemObj = JSON.parse order_item.detail
       str_order_item = JSON.stringify order_item
-      订单的状态;0: 未付款；1：已付款 2：已拍摄 3:拒绝
       order_status_html = ""
       if +order_item.order_status is 1
         order_status_html = "
@@ -111,7 +110,7 @@ _showList = (d)->
           </td>
           <td>#{enums.address}</td>
           <td><a class='viewDetail' href='javascript:void(0)' onclick='showDetail(#{str_order_item})'>点击看详细</a></td>
-          <td>#{enums.orderStatus[order_item.order_status]}</td>
+          <td class='#{enums.orderStatusColor[order_item.order_status]}'>#{enums.orderStatus[order_item.order_status]}</td>
           <td>
             #{order_status_html}
           </td>

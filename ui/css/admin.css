@@ -2,3 +2,9 @@ a:hover,a:active{text-decoration:underline;}
 #undoList_content a.viewDetail{
   color:#0000ff;
 }
+table#undoList .text-danger{color: #a94442;}
+table#undoList .text-success{color: #3c763d;}
+table#undoList .text-primary{color: #337ab7;}
+table#undoList .text-muted{color: #777;}
+table#undoList .text-info{color: #31708f;}
+table#undoList .text-warning{color: #8a6d3b;}
