@@ -98,6 +98,7 @@
      .unpay-text{color:#f22828;}
      .payed-text{color:#31aea8;}
 .non-order{display:none;}
+.has-order{display:none;}
 
 .book-order-agree-container{margin-top:30px;}
   .book-order-agree-container a{display:inline-block;text-align:center;}

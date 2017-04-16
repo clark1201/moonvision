@@ -13,15 +13,14 @@
     <script type="text/javascript" src="ui/js/tools.js"></script>
     <script type="text/javascript" src="ui/js/enums.js"></script>
     <link rel="stylesheet" type="text/css" href="ui/css/booking.css" />
+    <link rel="stylesheet" type="text/css" href="ui/css/admin.css" />
     <!--script type="text/javascript" src="ui/js/tongji.js"></script-->
   </head>
   <body>
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active"><a href="#undo" role="tab" data-toggle="tab">未处理订单</a></li>
-      <li role="presentation"><a href="#done" role="tab" data-toggle="tab">已处理订单</a></li>
-      <!-- <li role="presentation"><a href="#pass" role="tab" data-toggle="tab">过期订单</a></li>
-      <li role="presentation"><a href="#settings" role="tab" data-toggle="tab">设置日期</a></li> -->
+      <li role="presentation" class="active"><a href="#undo" role="tab" data-toggle="tab">订单</a></li>
+      <!-- <li role="presentation"><a href="#settings" role="tab" data-toggle="tab">设置日期</a></li> -->
     </ul>
 
     <!-- Tab panes -->
@@ -34,10 +33,39 @@
                 <th>订单号</th>
                 <th>拍摄时间</th>
                 <th>套餐</th>
+                <th style="position: relative;">
+                  <span style="cursor: pointer;display:inline-block;" onfocus="this.blur();">
+                    <span id="orderTypeLabel" class="filterLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      订单类型
+                      <span class="caret"></span>
+                    </span>
+                    <ul class="dropdown-menu bookLabel-container" aria-labelledby="bookLabel">
+                      <li><a id="allOrderType" data-key="type" data-value="all">全部</a></li>
+                      <li><a id="kidsOrderType" data-key="type" data-value="1">儿童</a></li>
+                      <li><a id="weddingOrderType" data-key="type" data-value="2">婚纱</a></li>
+                      <li><a id="marryOrderType" data-key="type" data-value="3">结婚登记</a></li>
+                      <li><a id="businessOrderType" data-key="type" data-value="4">商业</a></li>
+                    </ul>
+                  </span>
+                </th>
                 <th>下单人信息</th>
                 <th>拍摄地点</th>
                 <th>拍摄信息</th>
-                <th>订单状态</th>
+                <th style="position: relative;">
+                  <span style="cursor: pointer;display:inline-block;" onfocus="this.blur();">
+                    <span id="orderStatusLabel" class="filterLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      订单状态
+                      <span class="caret"></span>
+                    </span>
+                    <ul class="dropdown-menu bookLabel-container" aria-labelledby="bookLabel">
+                      <li><a id="allOrder" data-key="order_status" data-value="all">全部</a></li>
+                      <li><a id="unpayOrder" data-key="order_status" data-value="0">未付款</a></li>
+                      <li><a id="paidOrder" data-key="order_status" data-value="1">已付款</a></li>
+                      <li><a id="shotOrder" data-key="order_status" data-value="2">已拍摄</a></li>
+                      <li><a id="rejectOrder" data-key="order_status" data-value="3">拒绝</a></li>
+                    </ul>
+                  </span>
+                </th>
                 <th>操作</th>
               </tr>
             </thead>
@@ -45,11 +73,11 @@
               
             </tbody>
             <tbody class="non-order">
-              <tr><td colspan="8"><b>暂无未处理订单</b></td></tr>
+              <tr><td colspan="9"><b>暂无未处理订单</b></td></tr>
             </tbody>
             <tfoot>
               <tr>
-                <td colspan="8">
+                <td colspan="9">
                   <div class="text-right">共 <span id="undo_count"></span> 条记录</div>
                 </td>
               </tr>

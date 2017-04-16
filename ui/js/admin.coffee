@@ -1,10 +1,12 @@
 $('#modal').load "template/infoModal.html"
 $('#modal_confirm').load "template/confirmModal.html"
 # 未处理订单
+list = null
 showDetail = (orderItem)->
   order_item = orderItem
   order_itemObj = JSON.parse order_item.detail
   title = "#{order_item.order_id}订单详情"
+  # order_itemObj.type # 订单类型：1: 儿童,2: 婚纱,3: 结婚登记,4: 商业
   content = "<div>
     <p>拍摄时间：#{order_item.book_time} #{enums.bookingTime[+order_item.book_am_pm]}</p>
     <p>拍摄套餐：#{enums.packageName[order_itemObj.book_package]}</p>
@@ -59,39 +61,7 @@ setReject = (orderId)->
 getUndoList = ()->
   obj = 
     bc : (d)->
-      html = ''
-      $('#orderCount').text d?.length or 0
-      if d and d.length > 0
-        $('.non-order').hide()
-        $('.has-order').show()
-        $('#undo_count').text d.length
-        for order_item, i in d by -1
-          order_itemObj = JSON.parse order_item.detail
-          str_order_item = JSON.stringify order_item
-          html += "
-            <tr>
-              <td>#{order_item.order_id}</td>
-              <td>#{order_item.book_time} #{enums.bookingTime[+order_item.book_am_pm]}</td>
-              <td>#{enums.packageName[order_itemObj.book_package]}</td>
-              <td>
-                <p>姓名：#{order_item.username}</p>
-                <p>电话：#{order_item.tel}</p>
-                <p>地址：#{order_item.address}</p>
-              </td>
-              <td>#{enums.address}</td>
-              <td><a href='javascript:void(0)' onclick='showDetail(#{str_order_item})'>点击看详细</a></td>
-              <td>#{enums.orderStatus[order_item.order_status]}</td>
-              <td>
-                <p><a href='javascript:void(0)' onclick='setPay(#{order_item.order_id})'>已付款</a></p>
-                <p><a href='javascript:void(0)' onclick='setPicture(#{order_item.order_id})'>已拍摄</a></p>
-                <p><a href='javascript:void(0)' onclick='setReject(#{order_item.order_id})'>拒绝</a></p>
-              </td>
-            </tr>
-          "
-        $('#undoList_content').html html
-      else
-        $('.non-order').show()
-        $('.has-order').hide()
+      _showList d
       return
   ajax 'GET', '/CGI-BIN/getUndoList.pl', null, obj
   return
@@ -101,7 +71,57 @@ getUndoList = ()->
 
 # 设置日期
 
+_showList = (d)->
+  list = d
+  html = ''
+  $('#orderCount').text d?.length or 0
+  if d and d.length > 0
+    $('.non-order').hide()
+    $('.has-order').show()
+    $('#undo_count').text d.length
+    for order_item, i in d by -1
+      order_itemObj = JSON.parse order_item.detail
+      str_order_item = JSON.stringify order_item
+      html += "
+        <tr>
+          <td>#{order_item.order_id}</td>
+          <td>#{order_item.book_time} #{enums.bookingTime[+order_item.book_am_pm]}</td>
+          <td>#{enums.packageName[order_itemObj.book_package]}</td>
+          <td>#{enums.orderType[order_item.type]}</td>
+          <td>
+            <p>姓名：#{order_item.username}</p>
+            <p>电话：#{order_item.tel}</p>
+            <p>地址：#{order_item.address}</p>
+          </td>
+          <td>#{enums.address}</td>
+          <td><a class='viewDetail' href='javascript:void(0)' onclick='showDetail(#{str_order_item})'>点击看详细</a></td>
+          <td>#{enums.orderStatus[order_item.order_status]}</td>
+          <td>
+            <p><a href='javascript:void(0)' onclick='setPay(#{order_item.order_id})'>已付款</a></p>
+            <p><a href='javascript:void(0)' onclick='setPicture(#{order_item.order_id})'>已拍摄</a></p>
+            <p><a href='javascript:void(0)' onclick='setReject(#{order_item.order_id})'>拒绝</a></p>
+          </td>
+        </tr>
+      "
+    $('#undoList_content').html html
+  else
+    $('.non-order').show()
+    $('.has-order').hide()
+  return
+
+initListEvent = ()->
+  $('.bookLabel-container a').on 'click', ()->
+    $(@).parents('th').find('.filterLabel').text $(@).text()
+    key = $(@).data 'key'
+    val = $(@).data 'value'
+    _list = list.filter (n)->
+      n[key] is val
+    _showList _list
+    return
+  return
+
 admin_init = ()->
   getUndoList()
+  initListEvent()
   return
 admin_init()
