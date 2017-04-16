@@ -61,6 +61,7 @@ setReject = (orderId)->
 getUndoList = ()->
   obj = 
     bc : (d)->
+      list = d
       _showList d
       return
   ajax 'GET', '/CGI-BIN/getUndoList.pl', null, obj
@@ -72,7 +73,6 @@ getUndoList = ()->
 # 设置日期
 
 _showList = (d)->
-  list = d
   html = ''
   $('#orderCount').text d?.length or 0
   if d and d.length > 0
@@ -82,6 +82,22 @@ _showList = (d)->
     for order_item, i in d by -1
       order_itemObj = JSON.parse order_item.detail
       str_order_item = JSON.stringify order_item
+      订单的状态;0: 未付款；1：已付款 2：已拍摄 3:拒绝
+      order_status_html = ""
+      if +order_item.order_status is 1
+        order_status_html = "
+          <p><a class='text-success' href='javascript:void(0)' onclick='setPicture(#{order_item.order_id})'>已拍摄</a></p>
+        "
+      else if +order_item.order_status is 2
+        order_status_html = "-"
+      else if +order_item.order_status is 3
+        order_status_html = "-"
+      else
+        order_status_html = "
+          <p><a class='text-primary' href='javascript:void(0)' onclick='setPay(#{order_item.order_id})'>已付款</a></p>
+          <p><a class='text-success' href='javascript:void(0)' onclick='setPicture(#{order_item.order_id})'>已拍摄</a></p>
+          <p><a class='text-danger' href='javascript:void(0)' onclick='setReject(#{order_item.order_id})'>拒绝</a></p>
+        "
       html += "
         <tr>
           <td>#{order_item.order_id}</td>
@@ -97,9 +113,7 @@ _showList = (d)->
           <td><a class='viewDetail' href='javascript:void(0)' onclick='showDetail(#{str_order_item})'>点击看详细</a></td>
           <td>#{enums.orderStatus[order_item.order_status]}</td>
           <td>
-            <p><a href='javascript:void(0)' onclick='setPay(#{order_item.order_id})'>已付款</a></p>
-            <p><a href='javascript:void(0)' onclick='setPicture(#{order_item.order_id})'>已拍摄</a></p>
-            <p><a href='javascript:void(0)' onclick='setReject(#{order_item.order_id})'>拒绝</a></p>
+            #{order_status_html}
           </td>
         </tr>
       "
@@ -107,6 +121,7 @@ _showList = (d)->
   else
     $('.non-order').show()
     $('.has-order').hide()
+    $('#undo_count').text 0
   return
 
 initListEvent = ()->
@@ -114,8 +129,11 @@ initListEvent = ()->
     $(@).parents('th').find('.filterLabel').text $(@).text()
     key = $(@).data 'key'
     val = $(@).data 'value'
-    _list = list.filter (n)->
-      n[key] is val
+    if val is 'all'
+      _list = list
+    else
+      _list = list.filter (n)->
+        +n[key] is +val
     _showList _list
     return
   return
